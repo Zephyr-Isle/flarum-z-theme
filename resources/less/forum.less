@@ -93,8 +93,20 @@ mark when (@config-dark-mode =true) {
   }
 }
 
+/* ========== 下拉栏动画修改开始 ========== */
 .open .Dropdown-menu,
 .Dropdown-menu {
+  /* 基础过渡效果 */
+  transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+  transform-origin: top;
+  
+  /* 隐藏状态：向上偏移 10px，透明 */
+  transform: translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  /* 确保绝对定位不影响布局 */
+  display: block !important; 
+
   & when (@config-dark-mode = false) {
     background: rgba(246, 247, 249, 0.88);
     -webkit-backdrop-filter: var(--Acrylic);
@@ -107,6 +119,27 @@ mark when (@config-dark-mode =true) {
     backdrop-filter: var(--Acrylic);
   }
 }
+
+/* 打开状态：归位，显示，播放进入动画 */
+.open .Dropdown-menu {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  animation: dropdown-slide-down 0.2s ease-out;
+}
+
+/* 新增关键帧动画 */
+@keyframes dropdown-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ========== 下拉栏动画修改结束 ========== */
 
 /* 玄学优化 */
 .DiscussionListItem-title {
