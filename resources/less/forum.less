@@ -23,443 +23,384 @@ mark when (@config-dark-mode =true) {
 }
 
 /* 引用美化 */
-.Post-body pre {
-    font-size: 12px;
-    padding: 0 10px;
-    border-left: 4px solid #929292;
-    border-radius: 0
-}
-
 .Post-body blockquote {
-    & when (@config-dark-mode =false) {
-        background: #f0eeee;
-        color: #444;
-        font-size: 14px;
-        padding: 10px;
-        border: 0;
-        border-left: 4px solid #466eb2;
-        border-radius: 0
-    }
+  & when (@config-dark-mode = false) {
+    background: #f0eeee;
+    color: #444;
+    font-size: 14px;
+    padding: 10px;
+    border: 0;
+    border-left: 4px solid #466eb2;
+    border-radius: 0
+  }
 
-    & when (@config-dark-mode =true) {
-        background: #1b2228;
-        color: #ddd;
-        font-size: 14px;
-        padding: 10px;
-        border: 0;
-        border-left: 4px solid #466eb2;
-        border-radius: 0
-    }
+  & when (@config-dark-mode = true) {
+    background: #1b2228;
+    color: #ddd;
+    font-size: 14px;
+    padding: 10px;
+    border: 0;
+    border-left: 4px solid #466eb2;
+    border-radius: 0
+  }
 }
 
 .aaalert.aaerror .aainner,
 .aaalert.aainfo .aainner,
 .aaalert.aasuccess .aainner {
-    font-size: 14px;
-    text-align: left;
-    width: 80%;
-    margin-left: -8px;
-    padding: 5px 10px;
-    border: 0;
-    border-radius: 0
+  font-size: 14px;
+  text-align: left;
+  width: 80%;
+  margin-left: -8px;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 0
 }
 
 .aaalert.aaerror .aainner {
-    border-left: 4px solid #ff5c5c !important
+  border-left: 4px solid #ff5c5c !important
 }
 
 .aaalert.aasuccess .aainner {
-    border-left: 4px solid #58a400 !important
+  border-left: 4px solid #58a400 !important
 }
 
 .aaalert.aainfo .aainner {
-    border-left: 4px solid #569ff7 !important
+  border-left: 4px solid #569ff7 !important
 }
-
-/* ========== 方案 1 核心修改开始 ========== */
 
 :root {
-    /* 简化滤镜链，避免画面过暗 */
-    --Acrylic: blur(12px) saturate(1.3);
-
-    & when (@config-dark-mode =false) {
-        --body-bg: #f6f7f9;
-    }
-}
-
-/* 页面背景纹理 - 让亚克力模糊有内容可模糊 */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-
-    & when (@config-dark-mode =false) {
-        /* 亮色模式：轻微噪点纹理 */
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        opacity: 0.04;
-    }
-
-    & when (@config-dark-mode =true) {
-        /* 暗色模式：稍明显的纹理 */
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        opacity: 0.06;
-    }
+  --Acrylic: blur(10px);
+  & when (@config-dark-mode = false) {
+    --body-bg: #f6f7f9;
+  }
 }
 
 /* 导航栏亚克力效果 */
 @media (min-width:768px) {
-    #header {
-        position: relative !important;
-        z-index: 100 !important;
-
-        & when (@config-dark-mode =false) {
-            background: rgba(246, 247, 249, 0.75) !important;
-            -webkit-backdrop-filter: var(--Acrylic);
-            backdrop-filter: var(--Acrylic);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        & when (@config-dark-mode =true) {
-            background: rgba(28, 28, 30, 0.75) !important;
-            -webkit-backdrop-filter: var(--Acrylic);
-            backdrop-filter: var(--Acrylic);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
+  #header {
+    & when (@config-dark-mode = false) {
+      background: rgba(246, 247, 249, 0.78) !important;
+      -webkit-backdrop-filter: var(--Acrylic);
+      backdrop-filter: var(--Acrylic);
     }
+
+    & when (@config-dark-mode = true) {
+      background: rgba(28, 28, 30, 0.78) !important;
+      -webkit-backdrop-filter: var(--Acrylic);
+      backdrop-filter: var(--Acrylic);
+    }
+  }
 }
 
-/* 下拉栏亚克力效果 */
 .open .Dropdown-menu,
 .Dropdown-menu {
-    position: relative !important;
-    z-index: 1000 !important;
-    overflow: hidden !important;
+  & when (@config-dark-mode = false) {
+    background: rgba(246, 247, 249, 0.88);
+    -webkit-backdrop-filter: var(--Acrylic);
+    backdrop-filter: var(--Acrylic);
+  }
 
-    & when (@config-dark-mode =false) {
-        background: rgba(246, 247, 249, 0.85) !important;
-        -webkit-backdrop-filter: var(--Acrylic);
-        backdrop-filter: var(--Acrylic);
-        border: 1px solid rgba(0, 0, 0, 0.08) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    & when (@config-dark-mode =true) {
-        background: rgba(28, 28, 30, 0.85) !important;
-        -webkit-backdrop-filter: var(--Acrylic);
-        backdrop-filter: var(--Acrylic);
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    /* 确保内容在模糊层之上 */
-    >li>a,
-    >li>button,
-    >li>span {
-        position: relative !important;
-        z-index: 1 !important;
-    }
+  & when (@config-dark-mode = true) {
+    background: rgba(28, 28, 30, 0.88);
+    -webkit-backdrop-filter: var(--Acrylic);
+    backdrop-filter: var(--Acrylic);
+  }
 }
-
-/* ========== 方案 1 核心修改结束 ========== */
 
 /* 玄学优化 */
 .DiscussionListItem-title {
-    line-height: 1.9;
+  line-height: 1.9;
 }
 
 /* 移动端隐藏 */
 @media screen and (max-width: 1200px) {
-    .item-onlineUsers {
-        display: none !important;
-    }
+  .item-onlineUsers {
+    display: none !important;
+  }
 
-    .item-forumStatisticsWidget {
-        display: none !important;
-    }
+  .item-forumStatisticsWidget {
+    display: none !important;
+  }
 
-    .item-lastDiscussionViewers {
-        display: none !important;
-    }
+  .item-lastDiscussionViewers {
+    display: none !important;
+  }
 
-    .ButtonGroup>.Button:last-child:not(:first-child),
-    .ButtonGroup>.Button.Dropdown-toggle:not(:first-child) {
-        display: none !important;
-    }
+  .ButtonGroup>.Button:last-child:not(:first-child),
+  .ButtonGroup>.Button.Dropdown-toggle:not(:first-child) {
+    display: none !important;
+  }
 }
 
 /* 手机端搜索框优化 */
 @media (max-width: 767px) {
-    .item-search {
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-    }
+  .item-search {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
 }
 
 /* 修改手机端点击反馈 */
 .DiscussionListItem a {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.0);
 }
 
 /* 移除政治元素 */
 i[data-name=":flag_tw:"] {
-    visibility: hidden !important;
+  visibility: hidden !important;
 }
 
 i[data-name=":flag_hk:"] {
-    visibility: hidden !important;
+  visibility: hidden !important;
 }
 
 /* 黑暗模式隐藏一些东西 */
-.item-welcomeBox when (@config-dark-mode =true) {
-    display: none !important;
+.item-welcomeBox when (@config-dark-mode = true) {
+  display: none !important;
 }
 
 /* 黑暗模式优化 */
-.DiscussionHero--colored when (@config-dark-mode =true) {
-    color: #fff !important;
+.DiscussionHero--colored when (@config-dark-mode = true) {
+  color: #fff !important;
 }
 
 /* 滚动条优化 */
 html {
-    overflow-y: overlay !important;
-    width: 100% !important;
+  overflow-y: overlay !important;
+  width: 100% !important;
 }
 
 .item-like .Button--link .Button-label,
 .item-reply .Button--link .Button-label {
-    display: none;
+  display: none;
 }
 
 .item-like .Button:before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 600;
-    font-size: 14px;
-    content: '\f164';
-    vertical-align: -1px;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  font-size: 14px;
+  content: '\f164';
+  vertical-align: -1px;
 }
 
 .item-like .Button:focus {
-    color: #ff5c5c;
+  color: #ff5c5c;
 }
 
 .item-reply .Button--link:before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 600;
-    font-size: 15px;
-    content: '\f3e5';
-    margin-right: 4px;
-    vertical-align: -2px;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  font-size: 15px;
+  content: '\f3e5';
+  margin-right: 4px;
+  vertical-align: -2px;
 }
 
 .item-markAllAsRead {
-    display: none !important;
+  display: none !important;
 }
 
 @border-radius: 8px;
 
 .Hero-close {
-    display: none;
+  display: none;
 }
 
 .Button:active,
 .Button.active,
 .open>.Button.Dropdown-toggle {
-    box-shadow: unset;
+  box-shadow: unset;
 }
 
 .Button {
-    transition: background-color 0.4s;
+  transition: background-color 0.4s;
 }
 
 .FormControl {
-    transition: border-color 0.4s;
-    border: 1px solid var(--control-bg);
-    border-radius: 8px;
-    background-color: transparent;
+  transition: border-color 0.4s;
+  border: 1px solid var(--control-bg);
+  border-radius: 8px;
+  background-color: transparent;
 }
 
 .Search-input>input {
-    border: 1px solid var(--control-bg);
+  border: 1px solid var(--control-bg);
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .Search-input>input:not(:focus) {
-        border-color: transparent;
-    }
+  .Search-input>input:not(:focus) {
+    border-color: transparent;
+  }
 }
 
 @media (min-width:768px) {
-    .Search-input>input {
-        border-radius: 40px !important;
+  .Search-input>input {
+    border-radius: 40px !important;
+  }
+
+  .Dropdown-menu {
+    padding: 6px 6px 3px;
+
+    >li>a,
+    >li>button,
+    >li>span {
+      border-radius: 4px;
+      margin-bottom: 3px;
+    }
+  }
+
+  .item-nav>div>ul>li {
+    margin: 4px 0;
+    padding: 0.25px 8px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: var(--control-bg-light);
     }
 
-    .Dropdown-menu {
-        padding: 6px 6px 3px;
-
-        >li>a,
-        >li>button,
-        >li>span {
-            border-radius: 4px;
-            margin-bottom: 3px;
-        }
+    &.active {
+      background-color: var(--control-bg);
     }
 
-    .item-nav>div>ul>li {
-        margin: 4px 0;
-        padding: 0.25px 8px;
-        border-radius: 8px;
-
-        &:hover {
-            background-color: var(--control-bg-light);
-        }
-
-        &.active {
-            background-color: var(--control-bg);
-        }
-
-        &>a {
-            margin: 0;
-        }
+    &>a {
+      margin: 0;
     }
+  }
 
-    ul.NotificationGroup-content>li {
-        margin: 6px;
+  ul.NotificationGroup-content>li {
+    margin: 6px;
 
-        &>a.Notification {
-            border-radius: 4px;
-        }
+    &>a.Notification {
+      border-radius: 4px;
     }
+  }
 
-    .Composer:not(.fullScreen) {
-        margin-left: 6% !important;
-        margin-right: 6% !important;
-        border-radius: 16px;
-        margin-bottom: 20px;
-    }
+  .Composer:not(.fullScreen) {
+    margin-left: 6% !important;
+    margin-right: 6% !important;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
 }
 
 .DiscussionListItem-info .TagLabel {
-    background-color: transparent;
-    border-radius: 16px !important;
-    margin-left: 4px !important;
+  background-color: transparent;
+  border-radius: 16px !important;
+  margin-left: 4px !important;
 }
 
 .DiscussionListItem-info .TagLabel.colored,
 .TagLabel--colored {
-    --tag-color: var(--tag-bg);
-    border: 1px solid var(--tag-bg);
+  --tag-color: var(--tag-bg);
+  border: 1px solid var(--tag-bg);
 }
 
 .Post-warning-preview {
-    padding: 0;
+  padding: 0;
 }
 
 .WarningPreview {
-    margin-bottom: -2px !important;
+  margin-bottom: -2px !important;
 }
 
 .WarningListItem-info .WarningListItem-comment {
-    border-radius: 8px !important;
+  border-radius: 8px !important;
 }
 
 @media (max-width:767px) {
-    .DiscussionPage-nav>ul>li {
-        margin: 3px;
-    }
+  .DiscussionPage-nav>ul>li {
+    margin: 3px;
+  }
 }
 
 .LoadingIndicator {
-    border-color: var(--control-bg);
-    border-width: 3px;
-    border-top-color: var(--muted-color-light);
+  border-color: var(--control-bg);
+  border-width: 3px;
+  border-top-color: var(--muted-color-light);
 }
 
 /* 夜间模式主题优化 */
 body.dark {
-    .item-bestAnswerPost .Post-body {
-        p {
-            color: #ddd;
-        }
+  .item-bestAnswerPost .Post-body {
+    p {
+      color: #ddd;
     }
+  }
 
-    .BestAnswer--User {
-        a {
-            color: #fff;
-        }
+  .BestAnswer--User {
+    a {
+      color: #fff;
     }
+  }
 
-    .spoiler {
-        p {
-            color: #000;
-        }
+  .spoiler {
+    p {
+      color: #000;
     }
+  }
 
-    .CommentPost--Reactions {
-        background: #141a1f;
-    }
+  .CommentPost--Reactions {
+    background: #141a1f;
+  }
 
-    .FormControl {
-        background-color: #1b2228;
-    }
+  .FormControl {
+    background-color: #1b2228;
+  }
 }
 
 /* 回复按钮带图标 */
 .item-reply .Button--link:before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 600;
-    font-size: 15px;
-    content: '\f3e5';
-    margin-right: 8px;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  font-size: 15px;
+  content: '\f3e5';
+  margin-right: 8px;
 }
 
 .fa-reply {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 600;
-    font-size: 15px;
-    content: '\f3e5';
-    margin-right: 8px;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  font-size: 15px;
+  content: '\f3e5';
+  margin-right: 8px;
 }
 
 /* 加载更多按钮变大了！ */
 .DiscussionList-loadMore button {
-    width: 75%;
+  width: 75%;
 }
 
 .rankings-loadmore button,
 .UserDirectoryList-loadMore button {
-    margin: 0 auto;
-    width: 75%;
-    display: block;
+  margin: 0 auto;
+  width: 75%;
+  display: block;
 }
 
 .item-signUp {
-    display: none !important;
+  display: none !important;
 }
 
 .Hero {
-    margin: 20px auto 0;
-    max-width: 1200px;
-    border-radius: var(--border-radius);
+  margin: 20px auto 0;
+  max-width: 1200px;
+  border-radius: var(--border-radius);
 }
 
 .Header-logo {
-    max-height: 20px;
+  max-height: 20px;
 }
 
 .UserHero {
-    max-width: 100% !important;
-    border-radius: 0px !important;
-    margin: 0 !important;
-    background-size: cover !important;
+  max-width: 100% !important;
+  border-radius: 0px !important;
+  margin: 0 !important;
+  background-size: cover !important;
 }
 
 .UserCard {
-    background-size: cover !important;
+  background-size: cover !important;
 }
 
 //HarmonySanc字体加载
