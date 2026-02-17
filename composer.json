@@ -1,0 +1,36 @@
+{
+    "name": "zephyrisle/flarum-z-theme",
+    "description": "A beaytiful and responsive theme for Flarum.",
+    "type": "flarum-extension",
+    "license": "MIT",
+    "keywords": [
+        "flarum",
+        "theme",
+        "responsive"
+    ],
+    "authors": [
+        {
+            "name": "zephyr-Isle",
+            "email": "zephyr_isle@outlook.com"
+        }
+    ],
+    "require": {
+        "flarum/core": "^1.0"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Z Theme",
+            "category": "theme",
+            "icon": {
+                "name": "fas fa-chart-line",
+                "backgroundColor": "#1abc9c",
+                "color": "#fff"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Zephyrisle\\Theme\\": "src/"
+        }
+    }
+}
