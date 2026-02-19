@@ -714,14 +714,7 @@ aside.DiscussionPage-list {
 	}
 }
 
-.fancybox__toolbar {
-	app-region: drag;
-}
-
-.fancybox__backdrop,
-.fancybox__image {
-	app-region: no-drag;
-}
+/* .fancybox__toolbar and .fancybox__backdrop, .fancybox__image empty rules removed */
 
 .fancybox__toolbar__items--left {
 	margin-left: ~"env(titlebar-area-x, 0)";
@@ -759,11 +752,11 @@ aside.DiscussionPage-list {
 	padding: 8px 12px;
 	column-gap: 12px;
 
-	&>.carousel__button {
-		--carousel-button-width: 32px;
-		--carousel-button-height: 32px;
-		app-region: no-drag;
-		border-radius: 4px;
+    &>.carousel__button {
+        --carousel-button-width: 32px;
+        --carousel-button-height: 32px;
+        /* app-region: no-drag; removed for CSS compatibility */
+        border-radius: 4px;
 
 		&:hover {
 			background-color: @menu-item-hover;
@@ -922,27 +915,18 @@ aside.DiscussionPage-list {
 		}
 	}
 
-	@media (display-mode: window-controls-overlay) {
+    @media (display-mode: window-controls-overlay) {
 
-		#app-navigation,
-		.Modal .App-titleControl,
-		.Composer:not(.minimized):before,
-		.ModalManager:before {
-			app-region: drag;
+        #app-navigation,
+        .Modal .App-titleControl,
+        .Composer:not(.minimized):before,
+        .ModalManager:before {
+            /* app-region: drag; removed for CSS compatibility */
 
-			& button,
-			& a {
-				app-region: no-drag;
-			}
-		}
+            /* & button, & a { ... } empty rules removed */
+        }
 
-		.App-titleControl>.Button>*,
-		.App-primaryControl>.Button,
-		#home-link,
-		.App-backControl>.Button,
-		.normal .ComposerBody-header>li:first-child h3 {
-			app-region: no-drag;
-		}
+        /* .App-titleControl>.Button>*, .App-primaryControl>.Button, #home-link, .App-backControl>.Button, .normal .ComposerBody-header>li:first-child h3 { ... } empty rules removed */
 
 		.App,
 		.Composer:not(.minimized) {
@@ -1115,16 +1099,12 @@ aside.DiscussionPage-list {
 		}
 	}
 
-	@media (display-mode: window-controls-overlay) {
-		#header {
-			app-region: drag;
+    @media (display-mode: window-controls-overlay) {
+        #header {
+            /* app-region: drag; removed for CSS compatibility */
 
-			& a,
-			& button,
-			& input {
-				app-region: no-drag;
-			}
-		}
+            /* & a, & button, & input { ... } empty rules removed */
+        }
 
 		.App,
 		.App-header {
@@ -1160,10 +1140,10 @@ aside.DiscussionPage-list {
 			margin-left: 0;
 		}
 
-		.fullScreen .Composer-controls .Button {
-			margin-right: ~"calc(100vw - env(titlebar-area-x) - env(titlebar-area-width))" !important;
-			app-region: no-drag;
-		}
+        .fullScreen .Composer-controls .Button {
+            margin-right: ~"calc(100vw - env(titlebar-area-x) - env(titlebar-area-width))" !important;
+            /* app-region: no-drag; removed for CSS compatibility */
+        }
 	}
 }
 
