@@ -316,8 +316,8 @@ mark when (@config-dark-mode =true) {
 .sideNav .Dropdown--select .Dropdown-menu>li>a {
     color: var(--text-color, #191a1a);
     font-size: 14px;
-    padding: 42px 12px;
     display: block;
+    padding: 10px 0 0 42px;
 }
 
 .sideNav .Dropdown--select .Dropdown-menu>li:hover>a {
@@ -1768,4 +1768,126 @@ aside.DiscussionPage-list {
 
 #header {
     view-transition-name: top-navigation;
+}
+
+/* --- [修复] 从 forum.less 提取并重构的 SideNav 样式 --- */
+
+/* 1. 基础定位与间距 (适用于平板及以上) */
+@media (min-width: 768px) {
+  nav.IndexPage-nav.sideNav,
+  nav.UserPage-nav.sideNav {
+    margin-right: 16px; /* 原文件定义 */
+    display: block;     /* 确保显示 */
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* 2. 核心修复：模拟原文件中的 "桌面以下" 卡片化效果 */
+  /* 原文件逻辑：在 tablet-up 中，当宽度小于 screen-desktop 时，应用卡片样式 */
+  /* 这里我们直接应用，避免媒体查询嵌套导致的失效 */
+  @media (max-width: 1100px) { /* 假设 screen-desktop 约为 1100px-1200px，可根据实际调整 */
+    nav.IndexPage-nav.sideNav {
+      padding: 16px !important;
+      border-radius: 8px !important;
+      /* 使用原文件变量对应的计算值或 fallback */
+      background-color: rgba(255, 255, 255, 0.5) !important; /* @LayerFillColorDefault fallback */
+      margin-right: 0 !important; /* 原文件在此模式下取消右边距 */
+      
+      /* 阴影效果: @shadow-outline-normal + @low-elevation-ramp */
+      box-shadow: 
+        0px calc(0.5 * var(--elevation-height, 16px)) calc(1 * var(--elevation-height, 16px)) 0px rgba(0,0,0,0.14),
+        0 0 0 1px rgba(0,0,0,0.059) !important;
+      
+      scrollbar-width: thin;
+      overflow-y: auto;
+      max-height: calc(100vh - 100px); /* 防止溢出 */
+    }
+
+    /* 隐藏原文件中的伪元素装饰 */
+    nav.IndexPage-nav.sideNav:after {
+      display: none !important;
+    }
+  }
+}
+
+/* 3. 修复侧边栏内的列表项 (.item-nav) 布局 */
+/* 原文件使用了 flex-direction: column-reverse 来实现图标在上的布局 */
+.item-nav > div > ul > li {
+  margin: 4px 0 !important;
+  padding: 0 8px !important;
+  border-radius: 4px !important;
+  display: inline-flex !important; /* 强制 flex */
+  flex-direction: column-reverse !important; /* 图标在上，文字在下 */
+  width: fit-content !important;
+  align-items: center !important;
+  cursor: pointer;
+}
+
+/* 悬停与激活状态 */
+.item-nav > div > ul > li:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important; /* @menu-item-hover fallback */
+}
+
+.item-nav > div > ul > li.active,
+.item-nav > div > ul > li:active {
+  background-color: rgba(0, 0, 0, 0.03) !important; /* @menu-item-active fallback */
+}
+
+/* 4. 修复激活状态的指示器 (::before) */
+/* 原文件逻辑：左侧竖条指示器 */
+.item-nav > div > ul > li.active::before {
+  content: '' !important;
+  width: 4px !important;
+  height: 17px !important;
+  background: var(--primary-color) !important;
+  border-radius: 2px !important;
+  float: left !important;
+  /* 关键修正：调整 margin 以匹配 column-reverse 布局 */
+  margin: 9px -28px 0 -8px !important; 
+  display: block !important;
+}
+
+/* 处理多个激活项的逻辑 (原文件的高级选择器) */
+.item-nav > div > ul > li.active:has(~ li.active) {
+  background-color: transparent !important;
+}
+
+.item-nav > div > ul > li.active:has(~ li.active)::before {
+  display: none !important;
+}
+
+.item-nav > div > ul > li.active ~ li.active::before {
+  margin: 9px -28px 0 0 !important;
+}
+
+/* 5. 修复侧边栏下拉菜单 (如标签筛选) 的图标和文字颜色 */
+.sideNav .Dropdown--select .Dropdown-menu > li > a {
+  color: var(--text-color, #191a1a) !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sideNav .Dropdown--select .Dropdown-menu .icon {
+  display: inline-block !important;
+  color: inherit !important;
+  fill: currentColor !important;
+  min-width: 1em;
+}
+
+/* 6. 深色模式适配 (如果网站启用深色模式) */
+[data-theme="dark"] nav.IndexPage-nav.sideNav,
+.dark-mode nav.IndexPage-nav.sideNav {
+  background-color: rgba(40, 40, 40, 0.6) !important; /* @LayerFillColorDefault dark fallback */
+  box-shadow: 
+    0px calc(0.5 * var(--elevation-height, 16px)) calc(1 * var(--elevation-height, 16px)) 0px rgba(0,0,0,0.28),
+    0 0 0 1px rgba(255,255,255,0.06) !important;
+}
+
+[data-theme="dark"] .item-nav > div > ul > li:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="dark"] .item-nav > div > ul > li.active {
+  background-color: rgba(255, 255, 255, 0.04) !important;
 }
