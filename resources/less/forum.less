@@ -29,12 +29,8 @@
     @menu-item-active: ~"#00000006";
     @ControlFillColorDefault: ~"#FFFFFFB3";
     @ControlFillColorInputActive: white;
-    /* 修复低海拔阴影 */
     @low-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px rgba(0,0,0,0.14), 0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px rgba(0,0,0,0.14)";
-
-    /* 修复高海拔阴影 */
     @high-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px rgba(0,0,0,0.24), 0px 0px 8px 0px rgba(0,0,0,0.20)";
-    @Acrylic-bg: rgba(255, 255, 255, 0.6);
     @Text-Input: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#0000000F" ~"calc(100% - 1px)", ~"#00000072" ~"calc(100% - 1px)", ~"#00000072");
     @Text-Input-focus: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#0000000F" ~"calc(100% - 2px)", var(--primary-color) ~"calc(100% - 2px)", var(--primary-color)) !important;
 }
@@ -61,10 +57,7 @@
     @menu-item-active: ~"#ffffff0a";
     @ControlFillColorDefault: ~"#FFFFFF0F";
     @ControlFillColorInputActive: ~"#1E1E1EB3";
-    /* 深色模式低海拔 */
     @low-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px rgba(0,0,0,0.28), 0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px rgba(0,0,0,0.14)";
-
-    /* 深色模式高海拔 */
     @high-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px rgba(0,0,0,0.28), 0px 0px 2px 0px rgba(0,0,0,0.20)";
     @Acrylic-bg: transparent;
     @Text-Input: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#FFFFFF12" ~"calc(100% - 1px)", ~"#FFFFFF8B" ~"calc(100% - 1px)", ~"#FFFFFF8B");
