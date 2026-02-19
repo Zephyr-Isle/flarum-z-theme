@@ -7,121 +7,122 @@
 .define-colors(@config-dark-mode);
 
 .define-colors(false) {
-	@body-bg: lighten(average(average(fade(@config-primary-color, 30%), white), @layer-2-color), 1%);
-	@Switch-border-color: @Fluent-border;
-	@layer-1-color: #e8e8e8;
-	@layer-2-color: #f9f9f9;
-	@layer-3-color: #fdfdfd;
-	@obj-color: lighten(saturate(average(fade(@config-primary-color, 2%), #fbfbfb), 30%), 1%);
-	@LayerFillColorDefault: ~"#ffffff80";
-	@CardBackgroundFillColorDefault: fade(white, 70%);
-	@ExpanderHeaderBackground: ~"#00000009";
-	@obj-title-color: #191a1a;
-	@Fluent-border: fade(black, 5.9%);
-	@details-second-font-color: #5e5e5e;
-	@titlebar-bg: @header-bg-light;
-	@button-border-color: ~"#0000000f #0000000f #00000029";
-	@button-active-border-color: ~"#0000000f";
-	@button-color: ~"padding-box linear-gradient(#ffffffb3, #ffffffb3)";
-	@button-hover-color: ~"#f9f9f980";
-	@button-active-color: ~"#f9f9f94d";
-	@menu-item-hover: ~"#00000009";
-	@menu-item-active: ~"#00000006";
-	@ControlFillColorDefault: ~"#FFFFFFB3";
-	@ControlFillColorInputActive: white;
-	@low-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 14%), ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0" fade(#000, 14%);
-	@high-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 24%), ~"0px 0px 8px 0px" fade(#000, 20%);
-	@Acrylic-bg: rgba(255, 255, 255, 0.6);
-	@Text-Input: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#0000000F" ~"calc(100% - 1px)", ~"#00000072" ~"calc(100% - 1px)", ~"#00000072");
-	@Text-Input-focus: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#0000000F" ~"calc(100% - 2px)", var(--primary-color) ~"calc(100% - 2px)", var(--primary-color)) !important;
+    @body-bg: lighten(average(average(fade(@config-primary-color, 30%), white), @layer-2-color), 1%);
+    @Switch-border-color: @Fluent-border;
+    @layer-1-color: #e8e8e8;
+    @layer-2-color: #f9f9f9;
+    @layer-3-color: #fdfdfd;
+    @obj-color: lighten(saturate(average(fade(@config-primary-color, 2%), #fbfbfb), 30%), 1%);
+    @LayerFillColorDefault: ~"#ffffff80";
+    @CardBackgroundFillColorDefault: fade(white, 70%);
+    @ExpanderHeaderBackground: ~"#00000009";
+    @obj-title-color: #191a1a;
+    @Fluent-border: fade(black, 5.9%);
+    @details-second-font-color: #5e5e5e;
+    @titlebar-bg: @header-bg-light;
+    @button-border-color: ~"#0000000f #0000000f #00000029";
+    @button-active-border-color: ~"#0000000f";
+    @button-color: ~"padding-box linear-gradient(#ffffffb3, #ffffffb3)";
+    @button-hover-color: ~"#f9f9f980";
+    @button-active-color: ~"#f9f9f94d";
+    @menu-item-hover: ~"#00000009";
+    @menu-item-active: ~"#00000006";
+    @ControlFillColorDefault: ~"#FFFFFFB3";
+    @ControlFillColorInputActive: white;
+    @low-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 14%), ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0" fade(#000, 14%);
+    @high-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 24%), ~"0px 0px 8px 0px" fade(#000, 20%);
+    @Acrylic-bg: rgba(255, 255, 255, 0.6);
+    @Text-Input: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#0000000F" ~"calc(100% - 1px)", ~"#00000072" ~"calc(100% - 1px)", ~"#00000072");
+    @Text-Input-focus: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#0000000F" ~"calc(100% - 2px)", var(--primary-color) ~"calc(100% - 2px)", var(--primary-color)) !important;
 }
 
 .define-colors(true) {
-	@body-bg: lighten(average(average(fade(@config-primary-color, 30%), black), @layer-2-color), 2%);
-	@layer-1-color: #202020;
-	@layer-2-color: #272727;
-	@layer-3-color: #323232;
-	@obj-color: lighten(saturate(average(fade(@config-primary-color, 2%), #2b2b2b), 15%), 1%);
-	@LayerFillColorDefault: ~"#3a3a3a4c";
-	@CardBackgroundFillColorDefault: fade(white, 5%);
-	@ExpanderHeaderBackground: ~"#ffffff0f";
-	@obj-title-color: white;
-	@Fluent-border: fade(black, 9.8%);
-	@details-second-font-color: #cfcfcf;
-	@titlebar-bg: @header-bg-dark;
-	@button-border-color: ~"#ffffff18 #ffffff12 #ffffff12";
-	@button-active-border-color: ~"#ffffff12";
-	@button-color: ~"padding-box linear-gradient(#ffffff0f, #ffffff0f)";
-	@button-hover-color: ~"#ffffff15";
-	@button-active-color: ~"#ffffff08";
-	@menu-item-hover: ~"#ffffff0f";
-	@menu-item-active: ~"#ffffff0a";
-	@ControlFillColorDefault: ~"#FFFFFF0F";
-	@ControlFillColorInputActive: ~"#1E1E1EB3";
-	@low-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 28%), ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 14%);
-	@high-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 28%), ~"0px 0px 2px 0px" fade(#000, 20%);
-	@Acrylic-bg: transparent;
-	@Text-Input: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#FFFFFF12" ~"calc(100% - 1px)", ~"#FFFFFF8B" ~"calc(100% - 1px)", ~"#FFFFFF8B");
-	@Text-Input-focus: padding-box linear-gradient(@ControlFillColorInputActive, @ControlFillColorInputActive), border-box linear-gradient(~"#FFFFFF12" ~"calc(100% - 2px)", var(--primary-color) ~"calc(100% - 2px)", var(--primary-color)) !important;
+    @body-bg: lighten(average(average(fade(@config-primary-color, 30%), black), @layer-2-color), 2%);
+    @layer-1-color: #202020;
+    @layer-2-color: #272727;
+    @layer-3-color: #323232;
+    @obj-color: lighten(saturate(average(fade(@config-primary-color, 2%), #2b2b2b), 15%), 1%);
+    @LayerFillColorDefault: ~"#3a3a3a4c";
+    @CardBackgroundFillColorDefault: fade(white, 5%);
+    @ExpanderHeaderBackground: ~"#ffffff0f";
+    @obj-title-color: white;
+    @Fluent-border: fade(black, 9.8%);
+    @details-second-font-color: #cfcfcf;
+    @titlebar-bg: @header-bg-dark;
+    @button-border-color: ~"#ffffff18 #ffffff12 #ffffff12";
+    @button-active-border-color: ~"#ffffff12";
+    @button-color: ~"padding-box linear-gradient(#ffffff0f, #ffffff0f)";
+    @button-hover-color: ~"#ffffff15";
+    @button-active-color: ~"#ffffff08";
+    @menu-item-hover: ~"#ffffff0f";
+    @menu-item-active: ~"#ffffff0a";
+    @ControlFillColorDefault: ~"#FFFFFF0F";
+    @ControlFillColorInputActive: ~"#1E1E1EB3";
+    @low-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 28%), ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 14%);
+    @high-elevation-ramp: ~"0px calc(0.5 * var(--elevation-height)) calc(1 * var(--elevation-height)) 0px" fade(#000, 28%), ~"0px 0px 2px 0px" fade(#000, 20%);
+    @Acrylic-bg: transparent;
+    @Text-Input: padding-box linear-gradient(@ControlFillColorDefault, @ControlFillColorDefault), border-box linear-gradient(~"#FFFFFF12" ~"calc(100% - 1px)", ~"#FFFFFF8B" ~"calc(100% - 1px)", ~"#FFFFFF8B");
+    @Text-Input-focus: padding-box linear-gradient(@ControlFillColorInputActive, @ControlFillColorInputActive), border-box linear-gradient(~"#FFFFFF12" ~"calc(100% - 2px)", var(--primary-color) ~"calc(100% - 2px)", var(--primary-color)) !important;
 }
 
 .define-header(@config-colored-header);
 
 .define-header(false) {
-	@header-bg: @titlebar-bg;
+    @header-bg: @titlebar-bg;
 }
 
 .shadow2() {
-	--elevation-height: 2px;
+    --elevation-height: 2px;
 }
 
 .shadow4() {
-	--elevation-height: 4px;
+    --elevation-height: 4px;
 }
 
 .shadow8() {
-	--elevation-height: 8px;
+    --elevation-height: 8px;
 }
 
 .shadow16() {
-	--elevation-height: 16px;
+    --elevation-height: 16px;
 }
 
 .shadow28() {
-	--elevation-height: 28px;
+    --elevation-height: 28px;
 }
 
 .shadow64() {
-	--elevation-height: 64px;
+    --elevation-height: 64px;
 }
 
 :root {
-	accent-color: var(--primary-color);
-	scrollbar-width: thin;
-	--button-bg: @obj-color;
-	--button-bg-hover: fade(#999, 10%);
-	--fancybox-bg: @backdrop;
-	--fancybox-accent-color: var(--primary-color);
-	--noise-asset: url(data:image/png;base64,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);
+    accent-color: var(--primary-color);
+    scrollbar-width: thin;
+    --button-bg: @obj-color;
+    --button-bg-hover: fade(#999, 10%);
+    --fancybox-bg: @backdrop;
+    --fancybox-accent-color: var(--primary-color);
+    --noise-asset: url(data:image/png;base64,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);
 
-	& when (@config-dark-mode =false) {
-		--Acrylic-filter: contrast(45%) blur(30px) saturate(1.25) brightness(135%);
-		color-scheme: light;
-	}
+    & when (@config-dark-mode =false) {
+        --Acrylic-filter: contrast(45%) blur(30px) saturate(1.25) brightness(135%);
+        color-scheme: light;
+    }
 
-	& when (@config-dark-mode =true) {
-		--Acrylic-filter: saturate(125%) brightness(125%) blur(30px) contrast(75%) saturate(250%) brightness(60%) contrast(80%) brightness(60%);
-		color-scheme: dark;
-	}
+    & when (@config-dark-mode =true) {
+        --Acrylic-filter: saturate(125%) brightness(125%) blur(30px) contrast(75%) saturate(250%) brightness(60%) contrast(80%) brightness(60%);
+        color-scheme: dark;
+    }
 
-	& when (@config-colored-header =false) {
-		--colored-titlebar: false;
-	}
+    & when (@config-colored-header =false) {
+        --colored-titlebar: false;
+    }
 
-	& when (@config-colored-header =true) {
-		--colored-titlebar: true;
-	}
+    & when (@config-colored-header =true) {
+        --colored-titlebar: true;
+    }
 }
+
 /* 投票按钮对齐 */
 .item-polls {
     transform: translate(0, -2px);
@@ -148,468 +149,486 @@ mark when (@config-dark-mode =true) {
 
 /* 引用美化 */
 .Post-body blockquote {
-  & when (@config-dark-mode = false) {
-    background: #f0eeee;
-    color: #444;
-    font-size: 14px;
-    padding: 10px;
-    border: 0;
-    border-left: 4px solid #466eb2;
-    border-radius: 0
-  }
+    & when (@config-dark-mode =false) {
+        background: #f0eeee;
+        color: #444;
+        font-size: 14px;
+        padding: 10px;
+        border: 0;
+        border-left: 4px solid #466eb2;
+        border-radius: 0
+    }
 
-  & when (@config-dark-mode = true) {
-    background: #1b2228;
-    color: #ddd;
-    font-size: 14px;
-    padding: 10px;
-    border: 0;
-    border-left: 4px solid #466eb2;
-    border-radius: 0
-  }
+    & when (@config-dark-mode =true) {
+        background: #1b2228;
+        color: #ddd;
+        font-size: 14px;
+        padding: 10px;
+        border: 0;
+        border-left: 4px solid #466eb2;
+        border-radius: 0
+    }
 }
 
 .aaalert.aaerror .aainner,
 .aaalert.aainfo .aainner,
 .aaalert.aasuccess .aainner {
-  font-size: 14px;
-  text-align: left;
-  width: 80%;
-  margin-left: -8px;
-  padding: 5px 10px;
-  border: 0;
-  border-radius: 0
+    font-size: 14px;
+    text-align: left;
+    width: 80%;
+    margin-left: -8px;
+    padding: 5px 10px;
+    border: 0;
+    border-radius: 0
 }
 
 .aaalert.aaerror .aainner {
-  border-left: 4px solid #ff5c5c !important
+    border-left: 4px solid #ff5c5c !important
 }
 
 .aaalert.aasuccess .aainner {
-  border-left: 4px solid #58a400 !important
+    border-left: 4px solid #58a400 !important
 }
 
 .aaalert.aainfo .aainner {
-  border-left: 4px solid #569ff7 !important
+    border-left: 4px solid #569ff7 !important
 }
 
 :root {
-  --Acrylic: blur(10px);
-  & when (@config-dark-mode = false) {
-    --body-bg: #f6f7f9;
-  }
+    & when (@config-dark-mode =false) {
+        --body-bg: #f6f7f9;
+    }
 }
 
 /* 导航栏亚克力效果 */
 @media (min-width:768px) {
-  #header {
-    & when (@config-dark-mode = false) {
-      background: rgba(246, 247, 249, 0.78) !important;
-      -webkit-backdrop-filter: var(--Acrylic);
-      backdrop-filter: var(--Acrylic);
-    }
+    #header {
+        & when (@config-dark-mode =false) {
+            background: rgba(246, 247, 249, 0.78) !important;
+            -webkit-backdrop-filter: var(--Acrylic);
+            backdrop-filter: var(--Acrylic);
+        }
 
-    & when (@config-dark-mode = true) {
-      background: rgba(28, 28, 30, 0.78) !important;
-      -webkit-backdrop-filter: var(--Acrylic);
-      backdrop-filter: var(--Acrylic);
+        & when (@config-dark-mode =true) {
+            background: rgba(28, 28, 30, 0.78) !important;
+            -webkit-backdrop-filter: var(--Acrylic);
+            backdrop-filter: var(--Acrylic);
+        }
     }
-  }
 }
 
 .open .Dropdown-menu,
 .Dropdown-menu {
-  & when (@config-dark-mode = false) {
-    background: rgba(246, 247, 249, 0.88);
-    -webkit-backdrop-filter: var(--Acrylic);
-    backdrop-filter: var(--Acrylic);
-  }
+    & when (@config-dark-mode =false) {
+        background: rgba(246, 247, 249, 0.88);
+        -webkit-backdrop-filter: var(--Acrylic);
+        backdrop-filter: var(--Acrylic);
+    }
 
-  & when (@config-dark-mode = true) {
-    background: rgba(28, 28, 30, 0.88);
-    -webkit-backdrop-filter: var(--Acrylic);
-    backdrop-filter: var(--Acrylic);
-  }
+    & when (@config-dark-mode =true) {
+        background: rgba(28, 28, 30, 0.88);
+        -webkit-backdrop-filter: var(--Acrylic);
+        backdrop-filter: var(--Acrylic);
+    }
 }
+
 // 定义动画变量
 @menu-transition-duration: 0.2s;
 @menu-slide-distance: -10px; // 向下显示，所以初始位置偏上
 
-.Dropdown {
-  // 确保父容器有相对定位，防止动画溢出问题（如果原主题未定义）
-  position: relative; 
-}
-
 .Dropdown-menu {
-  // --- 提取并保留原有的基础样式 ---
-  &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu) {
-    .shadow16();
-    box-shadow: @low-elevation-ramp, @shadow-outline-normal;
-    border-radius: 8px;
-    background-image: var(--noise-asset);
-    background-attachment: fixed;
-    
-    // 毛玻璃效果支持
-    @supports (backdrop-filter: blur(30px)) {
-      background-color: @Acrylic-bg;
-      backdrop-filter: var(--Acrylic-filter);
+    &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu) {
+        .shadow16();
+        box-shadow: @low-elevation-ramp, @shadow-outline-normal;
+        border-radius: 8px;
+        background-image: var(--noise-asset);
+        background-attachment: fixed;
+
+        // 毛玻璃效果支持
+        @supports (backdrop-filter: blur(30px)) {
+            background-color: @Acrylic-bg;
+            backdrop-filter: var(--Acrylic-filter);
+        }
     }
-  }
 
-  &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu, .PostMeta .Dropdown-menu) {
-    padding: 0;
-  }
-
-  & > li {
-    margin: 4px;
-    & > a,
-    & > button {
-      border-radius: 4px;
-      &:hover { background: @menu-item-hover; }
-      &:active { background: @menu-item-active; }
+    &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu, .PostMeta .Dropdown-menu) {
+        padding: 0;
     }
-    &.active > a,
-    &.active > button {
-      background: @menu-item-active;
+
+    &>li {
+        margin: 4px;
+
+        &>a,
+        &>button {
+            border-radius: 4px;
+
+            &:hover {
+                background: @menu-item-hover;
+            }
+
+            &:active {
+                background: @menu-item-active;
+            }
+        }
+
+        &.active>a,
+        &.active>button {
+            background: @menu-item-active;
+        }
     }
-  }
 
-  .PostMeta & {
-    padding: 8px;
-  }
+    .PostMeta & {
+        padding: 8px;
+    }
 
-  // --- [新增/优化] 动画逻辑 ---
-  
-  // 1. 设置过渡效果
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(@menu-slide-distance); // 初始位置：向上偏移
-  transition: 
-    opacity @menu-transition-duration ease,
+
+    // 1. 设置过渡效果
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(@menu-slide-distance); // 初始位置：向上偏移
+    transition: opacity @menu-transition-duration ease,
     transform @menu-transition-duration cubic-bezier(0.16, 1, 0.3, 1), // 使用更自然的缓动函数
     visibility @menu-transition-duration;
-  
-  // 修复：确保菜单在计算布局时不占用空间当它隐藏时
-  display: block; 
-  pointer-events: none; // 隐藏时禁止点击
 
-  // 2. 定义显示状态 (当父级 .Dropdown 拥有 .open 类时)
-  // 注意：Flarum 通常通过给 .Dropdown 添加 .open 类来显示菜单
-  .open > & {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0); // 回到原位
-    pointer-events: auto; // 显示时允许点击
-    z-index: 1000; // 确保层级足够高
-  }
-}
+    display: block;
+    pointer-events: none; // 隐藏时禁止点击
 
-// 针对移动端可能的特殊覆盖 (参考原文件中的 media query)
-@media @phone {
-  .Dropdown .Dropdown-menu {
-    // 移动端如果需要不同动画，可在此调整，否则继承上方
-    // 原文件中这里有 !important 覆盖，需注意优先级
-    .open > & {
-       // 强制应用动画状态
-       opacity: 1 !important;
-       visibility: visible !important;
-       transform: translateY(0) !important;
+    .open>& {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); // 回到原位
+        pointer-events: auto; // 显示时允许点击
+        z-index: 1000; // 确保层级足够高
     }
-  }
 }
+
+/* --- [特别处理] SideNav 内部的下拉菜单 (如标签筛选) --- */
+/* 这些通常不需要滑入动画，或者需要不同的处理方式，直接设为始终可见或简单淡入 */
+.sideNav .Dropdown--select .Dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    backdrop-filter: none;
+    /* 侧边栏内通常不需要强毛玻璃，避免性能问题 */
+}
+
+/* --- 修复侧边栏列表项样式 --- */
+.sideNav .Dropdown--select .Dropdown-menu>li>a {
+    color: var(--text-color, #191a1a);
+    font-size: 14px;
+    padding: 8px 12px;
+    display: block;
+}
+
+.sideNav .Dropdown--select .Dropdown-menu>li:hover>a {
+    background-color: var(--menu-item-hover, rgba(0, 0, 0, 0.05));
+    border-radius: 4px;
+}
+
+@media @phone {
+    .Dropdown .Dropdown-menu {
+        .open>& {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+        }
+    }
+}
+
 /* 玄学优化 */
 .DiscussionListItem-title {
-  line-height: 1.9;
+    line-height: 1.9;
 }
 
 /* 移动端隐藏 */
 @media screen and (max-width: 1200px) {
-  .item-onlineUsers {
-    display: none !important;
-  }
+    .item-onlineUsers {
+        display: none !important;
+    }
 
-  .item-forumStatisticsWidget {
-    display: none !important;
-  }
+    .item-forumStatisticsWidget {
+        display: none !important;
+    }
 
-  .item-lastDiscussionViewers {
-    display: none !important;
-  }
+    .item-lastDiscussionViewers {
+        display: none !important;
+    }
 
-  .ButtonGroup>.Button:last-child:not(:first-child),
-  .ButtonGroup>.Button.Dropdown-toggle:not(:first-child) {
-    display: none !important;
-  }
+    .ButtonGroup>.Button:last-child:not(:first-child),
+    .ButtonGroup>.Button.Dropdown-toggle:not(:first-child) {
+        display: none !important;
+    }
 }
 
 /* 手机端搜索框优化 */
 @media (max-width: 767px) {
-  .item-search {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-  }
+    .item-search {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
 }
 
 /* 修改手机端点击反馈 */
 .DiscussionListItem a {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.0);
 }
 
 /* 移除政治元素 */
 i[data-name=":flag_tw:"] {
-  visibility: hidden !important;
+    visibility: hidden !important;
 }
 
 i[data-name=":flag_hk:"] {
-  visibility: hidden !important;
+    visibility: hidden !important;
 }
 
 /* 黑暗模式隐藏一些东西 */
-.item-welcomeBox when (@config-dark-mode = true) {
-  display: none !important;
+.item-welcomeBox when (@config-dark-mode =true) {
+    display: none !important;
 }
 
 /* 黑暗模式优化 */
-.DiscussionHero--colored when (@config-dark-mode = true) {
-  color: #fff !important;
+.DiscussionHero--colored when (@config-dark-mode =true) {
+    color: #fff !important;
 }
 
 /* 滚动条优化 */
 html {
-  overflow-y: overlay !important;
-  width: 100% !important;
+    overflow-y: overlay !important;
+    width: 100% !important;
 }
 
 .item-like .Button--link .Button-label,
 .item-reply .Button--link .Button-label {
-  display: none;
+    display: none;
 }
 
 .item-like .Button:before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 600;
-  font-size: 14px;
-  content: '\f164';
-  vertical-align: -1px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 600;
+    font-size: 14px;
+    content: '\f164';
+    vertical-align: -1px;
 }
 
 .item-like .Button:focus {
-  color: #ff5c5c;
+    color: #ff5c5c;
 }
 
 .item-reply .Button--link:before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 600;
-  font-size: 15px;
-  content: '\f3e5';
-  margin-right: 4px;
-  vertical-align: -2px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 600;
+    font-size: 15px;
+    content: '\f3e5';
+    margin-right: 4px;
+    vertical-align: -2px;
 }
 
 .item-markAllAsRead {
-  display: none !important;
+    display: none !important;
 }
 
 @border-radius: 8px;
 
 .Hero-close {
-  display: none;
+    display: none;
 }
 
 .Button:active,
 .Button.active,
 .open>.Button.Dropdown-toggle {
-  box-shadow: unset;
+    box-shadow: unset;
 }
 
 .Button {
-  transition: background-color 0.4s;
+    transition: background-color 0.4s;
 }
 
 .FormControl {
-  transition: border-color 0.4s;
-  border: 1px solid var(--control-bg);
-  border-radius: 8px;
-  background-color: transparent;
+    transition: border-color 0.4s;
+    border: 1px solid var(--control-bg);
+    border-radius: 8px;
+    background-color: transparent;
 }
 
 .Search-input>input {
-  border: 1px solid var(--control-bg);
+    border: 1px solid var(--control-bg);
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .Search-input>input:not(:focus) {
-    border-color: transparent;
-  }
+    .Search-input>input:not(:focus) {
+        border-color: transparent;
+    }
 }
 
 @media (min-width:768px) {
-  .Search-input>input {
-    border-radius: 40px !important;
-  }
-
-  .Dropdown-menu {
-    padding: 6px 6px 3px;
-
-    >li>a,
-    >li>button,
-    >li>span {
-      border-radius: 4px;
-      margin-bottom: 3px;
-    }
-  }
-
-  .item-nav>div>ul>li {
-    margin: 4px 0;
-    padding: 0.25px 8px;
-    border-radius: 8px;
-
-    &:hover {
-      background-color: var(--control-bg-light);
+    .Search-input>input {
+        border-radius: 40px !important;
     }
 
-    &.active {
-      background-color: var(--control-bg);
+    .Dropdown-menu {
+        padding: 6px 6px 3px;
+
+        >li>a,
+        >li>button,
+        >li>span {
+            border-radius: 4px;
+            margin-bottom: 3px;
+        }
     }
 
-    &>a {
-      margin: 0;
+    .item-nav>div>ul>li {
+        margin: 4px 0;
+        padding: 0.25px 8px;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: var(--control-bg-light);
+        }
+
+        &.active {
+            background-color: var(--control-bg);
+        }
+
+        &>a {
+            margin: 0;
+        }
     }
-  }
 
-  ul.NotificationGroup-content>li {
-    margin: 6px;
+    ul.NotificationGroup-content>li {
+        margin: 6px;
 
-    &>a.Notification {
-      border-radius: 4px;
+        &>a.Notification {
+            border-radius: 4px;
+        }
     }
-  }
 
-  .Composer:not(.fullScreen) {
-    margin-left: 6% !important;
-    margin-right: 6% !important;
-    border-radius: 16px;
-    margin-bottom: 20px;
-  }
+    .Composer:not(.fullScreen) {
+        margin-left: 6% !important;
+        margin-right: 6% !important;
+        border-radius: 16px;
+        margin-bottom: 20px;
+    }
 }
 
 .DiscussionListItem-info .TagLabel {
-  background-color: transparent;
-  border-radius: 16px !important;
-  margin-left: 4px !important;
+    background-color: transparent;
+    border-radius: 16px !important;
+    margin-left: 4px !important;
 }
 
 .DiscussionListItem-info .TagLabel.colored,
 .TagLabel--colored {
-  --tag-color: var(--tag-bg);
-  border: 1px solid var(--tag-bg);
+    --tag-color: var(--tag-bg);
+    border: 1px solid var(--tag-bg);
 }
 
 .Post-warning-preview {
-  padding: 0;
+    padding: 0;
 }
 
 .WarningPreview {
-  margin-bottom: -2px !important;
+    margin-bottom: -2px !important;
 }
 
 .WarningListItem-info .WarningListItem-comment {
-  border-radius: 8px !important;
+    border-radius: 8px !important;
 }
 
 @media (max-width:767px) {
-  .DiscussionPage-nav>ul>li {
-    margin: 3px;
-  }
+    .DiscussionPage-nav>ul>li {
+        margin: 3px;
+    }
 }
 
 .LoadingIndicator {
-  border-color: var(--control-bg);
-  border-width: 3px;
-  border-top-color: var(--muted-color-light);
+    border-color: var(--control-bg);
+    border-width: 3px;
+    border-top-color: var(--muted-color-light);
 }
 
 /* 夜间模式主题优化 */
 body.dark {
-  .item-bestAnswerPost .Post-body {
-    p {
-      color: #ddd;
+    .item-bestAnswerPost .Post-body {
+        p {
+            color: #ddd;
+        }
     }
-  }
 
-  .BestAnswer--User {
-    a {
-      color: #fff;
+    .BestAnswer--User {
+        a {
+            color: #fff;
+        }
     }
-  }
 
-  .spoiler {
-    p {
-      color: #000;
+    .spoiler {
+        p {
+            color: #000;
+        }
     }
-  }
 
-  .CommentPost--Reactions {
-    background: #141a1f;
-  }
+    .CommentPost--Reactions {
+        background: #141a1f;
+    }
 
-  .FormControl {
-    background-color: #1b2228;
-  }
+    .FormControl {
+        background-color: #1b2228;
+    }
 }
 
 /* 回复按钮带图标 */
 .item-reply .Button--link:before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 600;
-  font-size: 15px;
-  content: '\f3e5';
-  margin-right: 8px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 600;
+    font-size: 15px;
+    content: '\f3e5';
+    margin-right: 8px;
 }
 
 .fa-reply {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 600;
-  font-size: 15px;
-  content: '\f3e5';
-  margin-right: 8px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 600;
+    font-size: 15px;
+    content: '\f3e5';
+    margin-right: 8px;
 }
 
 /* 加载更多按钮变大了！ */
 .DiscussionList-loadMore button {
-  width: 75%;
+    width: 75%;
 }
 
 .rankings-loadmore button,
 .UserDirectoryList-loadMore button {
-  margin: 0 auto;
-  width: 75%;
-  display: block;
+    margin: 0 auto;
+    width: 75%;
+    display: block;
 }
 
 .item-signUp {
-  display: none !important;
+    display: none !important;
 }
 
 .Hero {
-  margin: 20px auto 0;
-  max-width: 1200px;
-  border-radius: var(--border-radius);
+    margin: 20px auto 0;
+    max-width: 1200px;
+    border-radius: var(--border-radius);
 }
 
 .Header-logo {
-  max-height: 20px;
+    max-height: 20px;
 }
 
 .UserHero {
-  max-width: 100% !important;
-  border-radius: 0px !important;
-  margin: 0 !important;
-  background-size: cover !important;
+    max-width: 100% !important;
+    border-radius: 0px !important;
+    margin: 0 !important;
+    background-size: cover !important;
 }
 
 .UserCard {
-  background-size: cover !important;
+    background-size: cover !important;
 }
 
 //HarmonySanc字体加载
