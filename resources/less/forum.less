@@ -1769,3 +1769,73 @@ aside.DiscussionPage-list {
 #header {
     view-transition-name: top-navigation;
 }
+
+@media (max-width: (@screen-desktop - 0.02)) {
+    nav.IndexPage-nav.sideNav {
+        padding: 16px;
+        border-radius: 8px;
+        background-color: @LayerFillColorDefault;
+        margin-right: 0;
+        box-shadow: @shadow-outline-normal;
+        scrollbar-width: thin;
+    }
+
+    .sideNav:after {
+        display: none;
+    }
+
+    .item-nav>div>ul>li {
+        display: inline-flex !important;
+        flex-direction: column-reverse;
+        width: fit-content;
+        align-items: center;
+
+        &.active::before {
+            width: ~"max(20%, 16px)";
+            height: 4px;
+            float: right;
+            margin: -4px 0 0 0;
+        }
+    }
+}
+
+
+.Dropdown-menu {
+    &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu) {
+        .shadow16();
+        box-shadow: @low-elevation-ramp, @shadow-outline-normal;
+        border-radius: 8px;
+        background-image: var(--noise-asset);
+        background-attachment: fixed;
+    }
+
+    &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu, .PostMeta .Dropdown-menu) {
+        padding: 0;
+    }
+
+    &>li {
+        margin: 4px;
+
+        &>a,
+        &>button {
+            border-radius: 4px;
+
+            &:hover {
+                background: @menu-item-hover;
+            }
+
+            &:active {
+                background: @menu-item-active;
+            }
+        }
+
+        &.active>a,
+        &.active>button {
+            background: @menu-item-active;
+        }
+    }
+
+    .PostMeta & {
+        padding: 8px;
+    }
+}
