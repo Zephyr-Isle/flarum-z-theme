@@ -25,6 +25,11 @@ Then enable the theme in your Flarum admin panel.
 
 - Flarum Core ^1.0
 
+## Credits
+
+- Some styles in this theme are inspired by or adapted from various open-source projects and online resources.
+- HarmonyOS font files are sourced from [Bilibili](https://s1.hdslb.com).
+
 ## Author
 
 - **Zephyr-Isle** - [zephyr_isle@outlook.com](mailto:zephyr_isle@outlook.com)
