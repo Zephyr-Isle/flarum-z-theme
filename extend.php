@@ -1,12 +1,9 @@
 <?php
 
 use Flarum\Extend;
-use Flarum\Extend\Frontend;
+use Flarum\Extend\Theme;
 
 return [
-    (new Frontend('forum'))
-        ->css(__DIR__.'/resources/less/forum.less'),
-    
-    (new Frontend('admin'))
-        ->css(__DIR__.'/resources/less/forum.less'),
+    (new Theme)
+        ->addCSS(__DIR__.'/resources/less/forum.less'),
 ];
