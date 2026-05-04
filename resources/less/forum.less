@@ -31,9 +31,9 @@
 @menu-item-hover: if(@config-dark-mode = true, ~"#ffffff0f", ~"#00000009");
 @menu-item-active: if(@config-dark-mode = true, ~"#ffffff0a", ~"#00000006");
 
-// Font Awesome icon mixin (Flarum v2 compatible)
+// Font Awesome icon mixin (Flarum 2.x - Font Awesome 7 compatible)
 .icon(@content, @size: 14px, @weight: 900) {
-    font-family: 'Font Awesome 6 Free';
+    font-family: 'Font Awesome 7 Free';
     font-weight: @weight;
     font-size: @size;
     content: @content;
