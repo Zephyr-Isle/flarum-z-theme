@@ -32,10 +32,14 @@
 @menu-item-active: if(@config-dark-mode = true, ~"#ffffff0a", ~"#00000006");
 
 // Font Awesome icon mixin (Flarum 2.x - Font Awesome 7 compatible)
-.icon(@content, @size: 14px, @weight: 900) {
-    font-family: 'Font Awesome 7 Free';
+.icon(@content, @size: 14px, @weight: 400) {
+    font-family: 'Font Awesome 7 Free', 'Font Awesome 6 Free', 'Font Awesome 5 Free';
     font-weight: @weight;
     font-size: @size;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
     content: @content;
 }
 
@@ -269,17 +273,17 @@ mark {
 .item-like {
     .Button--link {
         .Button-label { display: none; }
-        &:before { .icon('\f164', 14px, 400); vertical-align: -1px; }
+        &:before { .icon('\f164', 14px); vertical-align: -1px; }
     }
     .Button:focus { color: #ff5c5c; }
 }
 
 .item-reply .Button--link {
     .Button-label { display: none; }
-    &:before { .icon('\f3e5', 15px, 400); margin-right: 8px; vertical-align: -2px; }
+    &:before { .icon('\f3e5', 15px); margin-right: 8px; vertical-align: -2px; }
 }
 
-.fa-reply { .icon('\f3e5', 15px, 400); margin-right: 8px; }
+.fa-reply { .icon('\f3e5', 15px); margin-right: 8px; }
 .item-polls { transform: translate(0, -2px); }
 
 // ============================================
