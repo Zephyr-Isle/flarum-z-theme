@@ -1,39 +1,52 @@
 // ============================================
-// Z Theme for Flarum - Main Stylesheet
+// Z Theme for Flarum - Refined & Modernized
 // ============================================
 
 // --------------------------------------------
 // Variables & Mixins
 // --------------------------------------------
+@border-radius-sm: 6px;
+@border-radius: 12px;
+@border-radius-lg: 16px;
+@border-radius-pill: 40px;
 
-// Dark mode config (Flarum v2 compatibility)
-@config-dark-mode: false;
-
-// Border radius
-@border-radius: 8px;
-
-// Acrylic blur effect
-@acrylic: blur(20px) saturate(180%);
-
-// Elevation shadows
-.shadow(@height) {
-    --elevation-height: @height;
+// Elevation shadows (Real output)
+.shadow(@level) when (@level =2) {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.shadow2() { .shadow(2px); }
-.shadow4() { .shadow(4px); }
-.shadow8() { .shadow(8px); }
-.shadow16() { .shadow(16px); }
-.shadow28() { .shadow(28px); }
-.shadow64() { .shadow(64px); }
+.shadow(@level) when (@level =4) {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.08);
+}
 
-// Menu item colors based on dark mode
-@menu-item-hover: if(@config-dark-mode = true, ~"#ffffff0f", ~"#00000009");
-@menu-item-active: if(@config-dark-mode = true, ~"#ffffff0a", ~"#00000006");
+.shadow(@level) when (@level =8) {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
 
-// Font Awesome icon mixin (Flarum 2.x - Font Awesome 7 compatible)
+.shadow(@level) when (@level =16) {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+.shadow(@level) when (@level =28) {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 28px 56px rgba(0, 0, 0, 0.15);
+}
+
+// Acrylic Mixin
+.acrylic-bg(@light-bg: rgba(255, 255, 255, 0.72), @dark-bg: rgba(20, 26, 31, 0.78)) {
+    background: @light-bg;
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    body.dark & {
+        background: @dark-bg;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+}
+
+// Font Awesome icon mixin
 .icon(@content, @size: 14px, @weight: 400) {
-    font-family: 'Font Awesome 7 Free', 'Font Awesome 6 Free', 'Font Awesome 5 Free';
+    font-family: 'Font Awesome 6 Free', 'Font Awesome 5 Free';
     font-weight: @weight;
     font-size: @size;
     font-style: normal;
@@ -43,259 +56,339 @@
     content: @content;
 }
 
-// --------------------------------------------
-// Font Loading - HarmonyOS (Split for Coverage)
-// --------------------------------------------
-
-@font-prefix: 'https://s1.hdslb.com/bfs/static/jinkela/long/font/HarmonyOS_Regular';
-
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.a.woff2') format('woff2'); unicode-range: U+9aa2-ffe5; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.b.woff2') format('woff2'); unicode-range: U+8983-9aa0; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.c.woff2') format('woff2'); unicode-range: U+78f2-897b; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.d.woff2') format('woff2'); unicode-range: U+646d-78d9; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.e.woff2') format('woff2'); unicode-range: U+30e0-6445; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.f.woff2') format('woff2'); unicode-range: U+101-30df; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.g.woff2') format('woff2'); unicode-range: U+9aa8, U+9ab8, U+9ad3, U+9ad8, U+9b03, U+9b3c, U+9b41-9b42, U+9b44, U+9b4f, U+9b54, U+9c7c, U+9c81, U+9c8d, U+9c9c, U+9ca4, U+9cb8, U+9cc3, U+9cd6, U+9cde, U+9e1f, U+9e21, U+9e23, U+9e25-9e26, U+9e2d, U+9e2f, U+9e33, U+9e35, U+9e3d, U+9e3f, U+9e43, U+9e45, U+9e4a, U+9e4f, U+9e64, U+9e70, U+9e7f, U+9e93, U+9ea6, U+9ebb, U+9ec4, U+9ecd-9ece, U+9ed1, U+9ed4, U+9ed8, U+9f0e, U+9f13, U+9f20, U+9f3b, U+9f50, U+9f7f, U+9f84, U+9f8b, U+9f99-9f9a, U+9f9f, U+ff01, U+ff08-ff09, U+ff0c, U+ff1a-ff1b, U+ff1f; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.h.woff2') format('woff2'); unicode-range: U+975b, U+975e, U+9760-9762, U+9769, U+9773-9774, U+9776, U+978b, U+978d, U+9798, U+97a0, U+97ad, U+97e6-97e7, U+97e9, U+97ed, U+97f3, U+97f5-97f6, U+9875-9877, U+9879-987b, U+987d-987f, U+9881-9882, U+9884-9888, U+988a, U+9890-9891, U+9893, U+9896-9898, U+989c-989d, U+98a0, U+98a4, U+98a7, U+98ce, U+98d8, U+98de-98df, U+9910, U+9965, U+996d-9972, U+9975-9976, U+997a, U+997c, U+997f, U+9981, U+9985-9986, U+9988, U+998b, U+998f, U+9992, U+9996, U+9999, U+9a6c-9a71, U+9a73-9a74, U+9a76, U+9a79, U+9a7b-9a7c, U+9a7e, U+9a82, U+9a84, U+9a86-9a87, U+9a8b-9a8c, U+9a8f, U+9a91, U+9a97, U+9a9a, U+9aa1, U+9aa4; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.i.woff2') format('woff2'); unicode-range: U+9570, U+9576, U+957f, U+95e8, U+95ea, U+95ed-95f0, U+95f2, U+95f4, U+95f7-95fb, U+95fd, U+9600-9602, U+9605, U+9609, U+960e, U+9610-9611, U+9614, U+961c, U+961f, U+962e, U+9632-9636, U+963b, U+963f-9640, U+9644-9648, U+964b-964d, U+9650, U+9655, U+965b, U+9661-9662, U+9664, U+9668-966a, U+9675-9677, U+9685-9686, U+968b, U+968f-9690, U+9694, U+9698-9699, U+969c, U+96a7, U+96b6, U+96be, U+96c0-96c1, U+96c4-96c7, U+96cc-96cd, U+96cf, U+96d5, U+96e8, U+96ea, U+96f6-96f7, U+96f9, U+96fe, U+9700, U+9704, U+9707, U+9709, U+970d, U+9713, U+9716, U+971c, U+971e, U+9732, U+9738-9739, U+9752, U+9756, U+9759; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.j.woff2') format('woff2'); unicode-range: U+9179, U+917f, U+9187, U+9189, U+918b, U+918d, U+9190, U+9192, U+919a-919b, U+91ba, U+91c7, U+91c9-91ca, U+91cc-91cf, U+91d1, U+91dc, U+9274, U+93d6, U+9488-9489, U+948e, U+9492-9493, U+9497, U+9499, U+949d-94a3, U+94a5-94a9, U+94ae, U+94b1, U+94b3, U+94b5, U+94bb, U+94be, U+94c0-94c3, U+94c5-94c6, U+94dc-94dd, U+94e1, U+94e3, U+94ec-94ed, U+94f0-94f2, U+94f6, U+94f8, U+94fa, U+94fe, U+9500-9501, U+9504-9505, U+9508, U+950b-950c, U+9510-9511, U+9517, U+9519-951a, U+9521, U+9523-9526, U+9528, U+952d-9530, U+9539, U+953b, U+9540-9541, U+9547, U+954a, U+954d, U+9550-9551, U+955c, U+9563, U+956d; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.k.woff2') format('woff2'); unicode-range: U+9001-9003, U+9005-9006, U+9009-900a, U+900d, U+900f-9012, U+9014, U+9017, U+901a-901b, U+901d-9022, U+902e, U+9038, U+903b-903c, U+903e, U+9041-9042, U+9044, U+9047, U+904d, U+904f-9053, U+9057, U+905b, U+9062-9063, U+9065, U+9068, U+906d-906e, U+9075, U+907d, U+907f-9080, U+9082-9083, U+908b, U+9091, U+9093, U+9099, U+90a2-90a3, U+90a6, U+90aa, U+90ae-90af, U+90b1, U+90b5, U+90b8-90b9, U+90bb, U+90c1, U+90ca, U+90ce, U+90d1, U+90dd, U+90e1, U+90e7-90e8, U+90ed, U+90f4, U+90f8, U+90fd, U+9102, U+9119, U+9149, U+914b-914d, U+9152, U+9157, U+915a, U+915d-915e, U+9161, U+9163, U+9165, U+916a, U+916c, U+916e, U+9171, U+9175-9178; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.l.woff2') format('woff2'); unicode-range: U+8e44, U+8e47-8e48, U+8e4a-8e4b, U+8e51, U+8e59, U+8e66, U+8e6c-8e6d, U+8e6f, U+8e72, U+8e74, U+8e76, U+8e7f, U+8e81, U+8e87, U+8e8f, U+8eab-8eac, U+8eaf, U+8eb2, U+8eba, U+8f66-8f69, U+8f6c, U+8f6e-8f72, U+8f74, U+8f7b, U+8f7d, U+8f7f, U+8f83-8f8a, U+8f8d-8f8e, U+8f90-8f91, U+8f93, U+8f95-8f99, U+8f9b-8f9c, U+8f9e-8f9f, U+8fa3, U+8fa8-8fa9, U+8fab, U+8fb0-8fb1, U+8fb9, U+8fbd-8fbe, U+8fc1-8fc2, U+8fc4-8fc5, U+8fc7-8fc8, U+8fce, U+8fd0-8fd1, U+8fd3-8fd5, U+8fd8-8fd9, U+8fdb-8fdf, U+8fe2, U+8fe6, U+8fe8, U+8fea-8feb, U+8fed, U+8ff0, U+8ff3, U+8ff7-8ff9, U+8ffd, U+9000; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.m.woff2') format('woff2'); unicode-range: U+8d24-8d31, U+8d34-8d35, U+8d37-8d3f, U+8d41-8d45, U+8d48, U+8d4a-8d4c, U+8d4e-8d50, U+8d54, U+8d56, U+8d58, U+8d5a-8d5b, U+8d5d-8d5e, U+8d60-8d64, U+8d66-8d67, U+8d6b, U+8d70, U+8d74-8d77, U+8d81, U+8d85, U+8d8a-8d8b, U+8d9f, U+8da3, U+8db3-8db4, U+8db8, U+8dbe-8dbf, U+8dc3-8dc4, U+8dcb-8dcc, U+8dd1, U+8dd7, U+8ddb, U+8ddd, U+8ddf, U+8de4, U+8de8, U+8dea, U+8def, U+8df3, U+8df5, U+8df7, U+8dfa-8dfb, U+8e09-8e0a, U+8e0c, U+8e0f, U+8e1d-8e1e, U+8e22, U+8e29-8e2a, U+8e2e, U+8e31, U+8e35, U+8e39, U+8e42; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.n.woff2') format('woff2'); unicode-range: U+8bc9-8bcd, U+8bcf, U+8bd1, U+8bd3, U+8bd5, U+8bd7-8bd8, U+8bda-8bdb, U+8bdd-8bde, U+8be0-8be9, U+8beb-8bf5, U+8bf7-8bf8, U+8bfa-8bfb, U+8bfd-8c01, U+8c03-8c06, U+8c08, U+8c0a-8c0b, U+8c0d-8c13, U+8c15, U+8c17, U+8c19-8c1c, U+8c22-8c24, U+8c26-8c2a, U+8c2c-8c2d, U+8c30-8c35, U+8c37, U+8c41, U+8c46, U+8c4c, U+8c61-8c62, U+8c6a-8c6b, U+8c79-8c7a, U+8c82, U+8c89, U+8c8c, U+8d1d-8d1f, U+8d21-8d23; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.o.woff2') format('woff2'); unicode-range: U+889c, U+88a4, U+88ab, U+88ad, U+88b1, U+88c1-88c2, U+88c5-88c6, U+88c9, U+88d4-88d5, U+88d8-88d9, U+88df, U+88e3-88e4, U+88e8, U+88f1, U+88f3-88f4, U+88f8-88f9, U+88fe, U+8902, U+8910, U+8912-8913, U+891a-891b, U+8921, U+8925, U+892a-892b, U+8934, U+8936, U+8941, U+8944, U+895e-895f, U+8966, U+897f, U+8981, U+8986, U+89c1-89c2, U+89c4-89c6, U+89c8-89cb, U+89ce, U+89d0-89d2, U+89e3, U+89e5-89e6, U+8a00, U+8a07, U+8a79, U+8a89-8a8a, U+8a93, U+8b66, U+8b6c, U+8ba1-8bab, U+8bad-8bb0, U+8bb2-8bb3, U+8bb6-8bba, U+8bbc-8bc1, U+8bc4-8bc6, U+8bc8; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.p.woff2') format('woff2'); unicode-range: U+8695, U+869c, U+86a3-86a4, U+86a7, U+86aa, U+86af, U+86b1, U+86c0, U+86c6-86c7, U+86ca-86cb, U+86d0, U+86d4, U+86d9, U+86db, U+86df, U+86e4, U+86ee, U+86f0, U+86f9, U+86fe, U+8700, U+8702-8703, U+8708-8709, U+870d, U+8712-8713, U+8715, U+8717-8718, U+871a, U+871c, U+8721, U+8725, U+8734, U+8737, U+873b, U+873f, U+8747, U+8749, U+874c, U+874e, U+8757, U+8759, U+8760, U+8763, U+8774, U+8776, U+877c, U+8782-8783, U+8785, U+878d, U+8793, U+879f, U+87af, U+87b3, U+87ba, U+87c6, U+87ca, U+87d1-87d2, U+87e0, U+87e5, U+87f9, U+87fe, U+8815, U+8822, U+8839, U+8840, U+8845, U+884c-884d, U+8854, U+8857, U+8859, U+8861, U+8863, U+8865, U+8868, U+886b-886c, U+8870, U+8877, U+887d-887f, U+8881-8882, U+8884-8885, U+8888, U+888b, U+888d, U+8892, U+8896; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.q.woff2') format('woff2'); unicode-range: U+83dc-83dd, U+83e0, U+83e9, U+83f1-83f2, U+8403-8404, U+840b-840e, U+841d, U+8424-8428, U+843d, U+8451, U+8457, U+8459, U+845b, U+8461, U+8463, U+8469, U+846b-846c, U+8471, U+8475, U+847a, U+8482, U+848b, U+8499, U+849c, U+84b2, U+84b8, U+84bf, U+84c4, U+84c9, U+84d1, U+84d6, U+84dd, U+84df, U+84e6, U+84ec, U+8511, U+8513, U+8517, U+851a, U+851f, U+8521, U+852b-852c, U+8537, U+853b-853d, U+8549-854a, U+8559, U+8574, U+857e, U+8584, U+8587, U+858f, U+859b, U+85aa, U+85af-85b0, U+85c9, U+85cf-85d0, U+85d3, U+85d5, U+85e4, U+85e9, U+85fb, U+8611, U+8638, U+864e-8651, U+8654, U+865a, U+865e, U+866b-866c, U+8671, U+8679, U+867d-867e, U+8680-8682, U+868a, U+868c-868d, U+8693; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.s.woff2') format('woff2'); unicode-range: U+80de-8272; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.t.woff2') format('woff2'); unicode-range: U+7f72-80dc; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.u.woff2') format('woff2'); unicode-range: U+7eb5-7f6e; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.v.woff2') format('woff2'); unicode-range: U+7b4c-7eb3; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.w.woff2') format('woff2'); unicode-range: U+7981-7b4b; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.x.woff2') format('woff2'); unicode-range: U+77aa-7980; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.y.woff2') format('woff2'); unicode-range: U+761f-77a9; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.z.woff2') format('woff2'); unicode-range: U+7435-7601; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.aa.woff2') format('woff2'); unicode-range: U+725f-7434; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ab.woff2') format('woff2'); unicode-range: U+706d-725b; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ac.woff2') format('woff2'); unicode-range: U+6df7-706b; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ad.woff2') format('woff2'); unicode-range: U+6ccc-6df3; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ae.woff2') format('woff2'); unicode-range: U+6b92-6cca; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.af.woff2') format('woff2'); unicode-range: U+68ad-6b8b; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ag.woff2') format('woff2'); unicode-range: U+6756-68a8; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ah.woff2') format('woff2'); unicode-range: U+65f7-6751; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ai.woff2') format('woff2'); unicode-range: U+6467-65f6; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.aj.woff2') format('woff2'); unicode-range: U+6323-645e; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ak.woff2') format('woff2'); unicode-range: U+6258-6321; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.al.woff2') format('woff2'); unicode-range: U+60cb-6254; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.am.woff2') format('woff2'); unicode-range: U+5fcc-60ca; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.an.woff2') format('woff2'); unicode-range: U+5e7f-5fc6; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ao.woff2') format('woff2'); unicode-range: U+5c7f-5e7d; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ap.woff2') format('woff2'); unicode-range: U+5b85-5c79; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.aq.woff2') format('woff2'); unicode-range: U+5996-5b83; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ar.woff2') format('woff2'); unicode-range: U+57ce-5993; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.as.woff2') format('woff2'); unicode-range: U+561b-57cb; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.at.woff2') format('woff2'); unicode-range: U+54e5-5618; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.au.woff2') format('woff2'); unicode-range: U+5411-54df; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.av.woff2') format('woff2'); unicode-range: U+5348-5410; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.aw.woff2') format('woff2'); unicode-range: U+5207-5347; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ax.woff2') format('woff2'); unicode-range: U+50cf-5206; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.ay.woff2') format('woff2'); unicode-range: U+4f60-50bb; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.az.woff2') format('woff2'); unicode-range: U+4e94-4f5e; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.a0.woff2') format('woff2'); unicode-range: U+d7, U+e0-e1, U+e8-ea, U+ec-ed, U+f2-f3, U+f7, U+f9-fa, U+fc, U+2014, U+2018-2019, U+201c-201d, U+3001-3002, U+300a-300b, U+3010-3011, U+4e00-4e93; }
-@font-face { font-family: 'HarmonyOS_Regular'; font-style: normal; font-weight: 400; font-display: swap; src: url('@{font-prefix}.a1.woff2') format('woff2'); unicode-range: U+21-7e, U+a4, U+a7-a8, U+b0-b1, U+b7; }
-
 // ============================================
 // Base Styles
 // ============================================
-
-body {
-    font-family: HarmonyOS_Regular !important;
+:root {
+    --noise-asset: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
-:root {
-    --Acrylic: @acrylic;
-    --button-bg-hover: fade(#999, 10%);
-    --noise-asset: url("data:image/png;base64,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");
+body {
+    font-family: HarmonyOS_Regular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    background-attachment: fixed;
+    background-color: #f4f5f7;
+
+    &.dark {
+        background-color: #0d1117;
+    }
+}
+
+// ============================================
+// Components - Header & Navigation
+// ============================================
+@media (min-width: 768px) {
+    #header {
+        .acrylic-bg(rgba(246, 247, 249, 0.78), rgba(13, 17, 23, 0.82));
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        .shadow(4);
+
+        body.dark & {
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+    }
+
+    .item-nav>div>ul>li {
+        margin: 4px 0;
+        padding: 0.25px 12px;
+        border-radius: @border-radius-pill;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+
+            body.dark & {
+                background-color: rgba(255, 255, 255, 0.06);
+            }
+        }
+
+        &.active {
+            background-color: rgba(0, 0, 0, 0.07);
+
+            body.dark & {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        >a {
+            margin: 0;
+        }
+    }
+}
+
+.Header-logo {
+    max-height: 24px;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 }
 
 // ============================================
 // Components - Buttons & Controls
 // ============================================
-
 .Button {
-    transition: background-color 0.4s;
-    &:active, &.active, .open>&.Dropdown-toggle { box-shadow: unset; }
+    transition: all 0.2s ease;
+    border-radius: @border-radius-sm;
+
+    &:active,
+    &.active,
+    .open>&.Dropdown-toggle {
+        box-shadow: unset;
+    }
 }
 
 .FormControl {
-    transition: border-color 0.4s;
-    border-radius: @border-radius;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    border-radius: @border-radius-sm;
     background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    body.dark & {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
+    }
 }
 
-.Search-input > input {
-    border: 1px solid var(--control-bg);
-    @media (min-width: 768px) { border-radius: 40px !important; }
+.Search-input>input {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.5);
+
+    body.dark & {
+        border-color: rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    @media (min-width: 768px) {
+        border-radius: @border-radius-pill !important;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .Search-input > input:not(:focus) { border-color: transparent; }
-}
-
-@media (max-width: 767px) {
-    .item-search { margin-top: 0 !important; margin-bottom: 0 !important; }
+    .Search-input>input:not(:focus) {
+        border-color: transparent;
+        background: transparent;
+    }
 }
 
 // ============================================
-// Components - Dropdowns
+// Components - Dropdowns (Acrylic Style)
 // ============================================
-
-.open .Dropdown-menu, .Dropdown-menu {
-    & when (@config-dark-mode = false) { background: rgba(246, 247, 249, 0.91); }
-    & when (@config-dark-mode = true) { background: rgba(28, 28, 30, 0.91); }
+.Dropdown-menu {
+    .acrylic-bg(rgba(255, 255, 255, 0.85), rgba(28, 28, 30, 0.85));
+    .shadow(16);
+    border-radius: @border-radius;
+    background-image: var(--noise-asset);
+    overflow: hidden;
 
     &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu) {
-        .shadow16();
-        border-radius: @border-radius;
-        background-image: var(--noise-asset);
-        background-attachment: fixed;
+        padding: 6px;
     }
 
-    &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu, .PostMeta .Dropdown-menu) { padding: 0; }
+    >li {
+        margin: 2px 0;
 
-    > li {
-        margin: 4px;
-        > a, > button {
-            border-radius: 4px;
-            &:hover { background: @menu-item-hover; }
-            &:active { background: @menu-item-active; }
+        >a,
+        >button,
+        >span {
+            border-radius: @border-radius-sm;
+            transition: background-color 0.15s;
+            padding: 8px 12px;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.04);
+
+                body.dark & {
+                    background: rgba(255, 255, 255, 0.06);
+                }
+            }
+
+            &:active {
+                background: rgba(0, 0, 0, 0.08);
+
+                body.dark & {
+                    background: rgba(255, 255, 255, 0.1);
+                }
+            }
         }
-        &.active > a, &.active > button { background: @menu-item-active; }
-    }
 
-    .PostMeta & { padding: 8px; }
-}
+        &.active>a,
+        &.active>button {
+            background: rgba(0, 0, 0, 0.06);
 
-@media (min-width: 768px) {
-    .Dropdown-menu {
-        padding: 6px 6px 3px;
-        > li > a, > li > button, > li > span { border-radius: 4px; margin-bottom: 3px; }
-    }
-}
-
-.sideNav .Dropdown--select .Dropdown-menu > li > a { color: var(--text-color); }
-
-// ============================================
-// Components - Navigation & Header
-// ============================================
-
-@media (min-width: 768px) {
-    #header {
-        & when (@config-dark-mode = false) { background: rgba(246, 247, 249, 0.78) !important; }
-        & when (@config-dark-mode = true) { background: rgba(20, 26, 31, 0.78) !important; }
-        -webkit-backdrop-filter: var(--Acrylic);
-        backdrop-filter: var(--Acrylic);
-    }
-
-    .item-nav > div > ul > li {
-        margin: 4px 0;
-        padding: 0.25px 8px;
-        border-radius: @border-radius;
-        &:hover { background-color: var(--control-bg-light); }
-        &.active { background-color: var(--control-bg); }
-        > a { margin: 0; }
-    }
-
-    ul.NotificationGroup-content > li {
-        margin: 6px;
-        > a.Notification { border-radius: 4px; }
+            body.dark & {
+                background: rgba(255, 255, 255, 0.08);
+            }
+        }
     }
 }
 
 // ============================================
-// Components - Posts & Discussions
+// Components - Discussions & Cards
 // ============================================
-
 .DiscussionListItem {
-    a { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
-    &-title { line-height: 1.9; }
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: @border-radius;
+    margin-bottom: 8px !important;
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+    .shadow(2);
+
+    body.dark & {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(255, 255, 255, 0.04);
+    }
+
+    &:hover {
+        .shadow(4);
+        transform: translateY(-1px);
+        border-color: rgba(0, 0, 0, 0.08);
+
+        body.dark & {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+    }
+
+    a {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    &-title {
+        line-height: 1.5;
+        font-weight: 600;
+    }
+
     &-info .TagLabel {
         background-color: transparent;
-        border-radius: 16px !important;
+        border-radius: @border-radius-pill !important;
         margin-left: 4px !important;
-        &.colored { --tag-color: var(--tag-bg); border: 1px solid var(--tag-bg); }
+        font-size: 12px;
+
+        &.colored {
+            --tag-color: var(--tag-bg);
+            border: 1px solid var(--tag-bg);
+        }
     }
 }
 
-.TagLabel--colored { --tag-color: var(--tag-bg); border: 1px solid var(--tag-bg); }
-
-.Post-body blockquote {
-    font-size: 14px;
-    padding: 10px;
-    border: 0;
-    border-left: 4px solid #466eb2;
-    border-radius: 0;
-    & when (@config-dark-mode = false) { background: #f0eeee; color: #444; }
-    & when (@config-dark-mode = true) { background: #1b2228; color: #ddd; }
+.TagLabel--colored {
+    --tag-color: var(--tag-bg);
+    border: 1px solid var(--tag-bg);
 }
 
-.Post-warning-preview { padding: 0; }
-.WarningPreview { margin-bottom: -2px !important; }
-.WarningListItem-info .WarningListItem-comment { border-radius: @border-radius !important; }
+// ============================================
+// Components - Posts & Content
+// ============================================
+.Post-body blockquote {
+    font-size: 14px;
+    padding: 12px 16px;
+    border: 0;
+    border-left: 4px solid var(--primary-color, #466eb2);
+    border-radius: 0 @border-radius-sm @border-radius-sm 0;
+    background: rgba(0, 0, 0, 0.03);
+    color: #555;
+
+    body.dark & {
+        background: rgba(255, 255, 255, 0.05);
+        color: #aaa;
+    }
+}
 
 mark {
-    padding: 2px 7px;
-    border-radius: 7px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2) !important;
-    margin: 3px;
-    & when (@config-dark-mode = false) { background: #FFE300 !important; color: black !important; }
-    & when (@config-dark-mode = true) { background: #0072ff !important; color: white !important; }
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 2px;
+    background: #FFE300 !important;
+    color: black !important;
+
+    body.dark & {
+        background: #0072ff !important;
+        color: white !important;
+    }
 }
 
 .aaalert {
-    &.aaerror .aainner, &.aainfo .aainner, &.aasuccess .aainner {
+
+    &.aaerror .aainner,
+    &.aainfo .aainner,
+    &.aasuccess .aainner {
         font-size: 14px;
         text-align: left;
         width: 80%;
         margin-left: -8px;
-        padding: 5px 10px;
+        padding: 12px 16px;
         border: 0;
-        border-radius: 0;
+        border-radius: 0 @border-radius-sm @border-radius-sm 0;
     }
-    &.aaerror .aainner { border-left: 4px solid #ff5c5c !important; }
-    &.aasuccess .aainner { border-left: 4px solid #58a400 !important; }
-    &.aainfo .aainner { border-left: 4px solid #569ff7 !important; }
+
+    &.aaerror .aainner {
+        border-left: 4px solid #ff5c5c !important;
+    }
+
+    &.aasuccess .aainner {
+        border-left: 4px solid #58a400 !important;
+    }
+
+    &.aainfo .aainner {
+        border-left: 4px solid #569ff7 !important;
+    }
 }
 
 // ============================================
 // Components - Actions & Icons
 // ============================================
-
-.item-like {
-    .Button--link {
-        .Button-label { display: none; }
-        &:before { .icon('\f164', 14px); vertical-align: -1px; }
+.item-like .Button--link {
+    .Button-label {
+        display: none;
     }
-    .Button:focus { color: #ff5c5c; }
+
+    &:before {
+        .icon('\f164', 14px);
+        vertical-align: -1px;
+        transition: transform 0.2s;
+    }
+
+    &:hover:before {
+        transform: scale(1.2);
+    }
+
+    &:focus,
+    &.active {
+        color: #ff5c5c !important;
+    }
 }
 
 .item-reply .Button--link {
-    .Button-label { display: none; }
-    &:before { .icon('\f3e5', 15px); margin-right: 8px; vertical-align: -2px; }
+    .Button-label {
+        display: none;
+    }
+
+    &:before {
+        .icon('\f3e5', 15px);
+        margin-right: 8px;
+        vertical-align: -2px;
+    }
 }
 
-.fa-reply { .icon('\f3e5', 15px); margin-right: 8px; }
-.item-polls { transform: translate(0, -2px); }
-
 // ============================================
-// Components - Hero & Cards
+// Components - Hero & Composer
 // ============================================
-
 .Hero {
     margin: 20px auto 0;
     max-width: 1200px;
-    border-radius: var(--border-radius);
-    &-close { display: none; }
-    &--colored when (@config-dark-mode = true) { color: #fff !important; }
+    border-radius: @border-radius-lg;
+    .shadow(4);
+    overflow: hidden;
+
+    &-close {
+        display: none;
+    }
 }
 
 .UserHero {
@@ -305,86 +398,558 @@ mark {
     background-size: cover !important;
 }
 
-.UserCard { background-size: cover !important; }
-.Header-logo { max-height: 20px; }
-
-// ============================================
-// Components - Composer & Editor
-// ============================================
-
 @media (min-width: 768px) {
     .Composer:not(.fullScreen) {
         margin-left: 6% !important;
         margin-right: 6% !important;
-        border-radius: 16px;
+        border-radius: @border-radius-lg;
         margin-bottom: 20px;
+        .shadow(28);
+        .acrylic-bg(rgba(255, 255, 255, 0.92), rgba(28, 28, 30, 0.92));
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 }
 
 // ============================================
-// Components - Loading
+// Utility & Responsive
 // ============================================
-
 .LoadingIndicator {
-    border-color: var(--control-bg);
+    border-color: rgba(0, 0, 0, 0.1);
     border-width: 3px;
-    border-top-color: var(--muted-color-light);
+    border-top-color: var(--primary-color);
+
+    body.dark & {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
 }
 
-// ============================================
-// Dark Mode Overrides
-// ============================================
-
-body.dark {
-    .item-bestAnswerPost .Post-body p { color: #ddd; }
-    .BestAnswer--User a { color: #fff; }
-    .spoiler p { color: #000; }
-    .CommentPost--Reactions { background: #141a1f; }
-    .FormControl { background-color: #1b2228; }
-}
-
-.item-welcomeBox when (@config-dark-mode = true) { display: none !important; }
-
-// ============================================
-// Responsive Styles
-// ============================================
-
-@media screen and (max-width: 1200px) {
-    .item-onlineUsers, .item-forumStatisticsWidget, .item-lastDiscussionViewers { display: none !important; }
-}
-
-@media (max-width: 767px) {
-    .DiscussionPage-nav > ul > li { margin: 3px; }
-}
-
-// ============================================
-// Utility Classes
-// ============================================
-
-.DiscussionList-loadMore button, .rankings-loadmore button, .UserDirectoryList-loadMore button {
-    width: 75%;
+.DiscussionList-loadMore button,
+.rankings-loadmore button,
+.UserDirectoryList-loadMore button {
+    width: auto;
+    min-width: 200px;
     margin: 0 auto;
     display: block;
+    border-radius: @border-radius-pill;
+    transition: all 0.2s;
+
+    &:hover {
+        .shadow(4);
+        transform: translateY(-1px);
+    }
 }
 
-.item-markAllAsRead, .item-signUp { display: none !important; }
+// Hide specific flags
+i[data-name=":flag_tw:"],
+i[data-name=":flag_hk:"] {
+    visibility: hidden !important;
+}
 
-i[data-name=":flag_tw:"], i[data-name=":flag_hk:"] { visibility: hidden !important; }
+.item-markAllAsRead,
+item-signUp {
+    display: none !important;
+}
 
-html { width: 100% !important; }
+@media (max-width: 767.98px) {
+    .Header-title {
+        display: grid;
+        place-items: center;
+    }
 
-.dropdown-toggle {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
-    border: none;
-    color: white;
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 40px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    .DiscussionPage-nav>ul>li {
+        margin: 3px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .item-onlineUsers,
+    .item-forumStatisticsWidget,
+    .item-lastDiscussionViewers {
+        display: none !important;
+    }
+}
+
+
+// --------------------------------------------
+// Font Loading - HarmonyOS (Split for Coverage)
+// --------------------------------------------
+
+@font-prefix: 'https://s1.hdslb.com/bfs/static/jinkela/long/font/HarmonyOS_Regular';
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.a.woff2') format('woff2');
+    unicode-range: U+9aa2-ffe5;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.b.woff2') format('woff2');
+    unicode-range: U+8983-9aa0;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.c.woff2') format('woff2');
+    unicode-range: U+78f2-897b;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.d.woff2') format('woff2');
+    unicode-range: U+646d-78d9;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.e.woff2') format('woff2');
+    unicode-range: U+30e0-6445;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.f.woff2') format('woff2');
+    unicode-range: U+101-30df;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.g.woff2') format('woff2');
+    unicode-range: U+9aa8, U+9ab8, U+9ad3, U+9ad8, U+9b03, U+9b3c, U+9b41-9b42, U+9b44, U+9b4f, U+9b54, U+9c7c, U+9c81, U+9c8d, U+9c9c, U+9ca4, U+9cb8, U+9cc3, U+9cd6, U+9cde, U+9e1f, U+9e21, U+9e23, U+9e25-9e26, U+9e2d, U+9e2f, U+9e33, U+9e35, U+9e3d, U+9e3f, U+9e43, U+9e45, U+9e4a, U+9e4f, U+9e64, U+9e70, U+9e7f, U+9e93, U+9ea6, U+9ebb, U+9ec4, U+9ecd-9ece, U+9ed1, U+9ed4, U+9ed8, U+9f0e, U+9f13, U+9f20, U+9f3b, U+9f50, U+9f7f, U+9f84, U+9f8b, U+9f99-9f9a, U+9f9f, U+ff01, U+ff08-ff09, U+ff0c, U+ff1a-ff1b, U+ff1f;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.h.woff2') format('woff2');
+    unicode-range: U+975b, U+975e, U+9760-9762, U+9769, U+9773-9774, U+9776, U+978b, U+978d, U+9798, U+97a0, U+97ad, U+97e6-97e7, U+97e9, U+97ed, U+97f3, U+97f5-97f6, U+9875-9877, U+9879-987b, U+987d-987f, U+9881-9882, U+9884-9888, U+988a, U+9890-9891, U+9893, U+9896-9898, U+989c-989d, U+98a0, U+98a4, U+98a7, U+98ce, U+98d8, U+98de-98df, U+9910, U+9965, U+996d-9972, U+9975-9976, U+997a, U+997c, U+997f, U+9981, U+9985-9986, U+9988, U+998b, U+998f, U+9992, U+9996, U+9999, U+9a6c-9a71, U+9a73-9a74, U+9a76, U+9a79, U+9a7b-9a7c, U+9a7e, U+9a82, U+9a84, U+9a86-9a87, U+9a8b-9a8c, U+9a8f, U+9a91, U+9a97, U+9a9a, U+9aa1, U+9aa4;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.i.woff2') format('woff2');
+    unicode-range: U+9570, U+9576, U+957f, U+95e8, U+95ea, U+95ed-95f0, U+95f2, U+95f4, U+95f7-95fb, U+95fd, U+9600-9602, U+9605, U+9609, U+960e, U+9610-9611, U+9614, U+961c, U+961f, U+962e, U+9632-9636, U+963b, U+963f-9640, U+9644-9648, U+964b-964d, U+9650, U+9655, U+965b, U+9661-9662, U+9664, U+9668-966a, U+9675-9677, U+9685-9686, U+968b, U+968f-9690, U+9694, U+9698-9699, U+969c, U+96a7, U+96b6, U+96be, U+96c0-96c1, U+96c4-96c7, U+96cc-96cd, U+96cf, U+96d5, U+96e8, U+96ea, U+96f6-96f7, U+96f9, U+96fe, U+9700, U+9704, U+9707, U+9709, U+970d, U+9713, U+9716, U+971c, U+971e, U+9732, U+9738-9739, U+9752, U+9756, U+9759;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.j.woff2') format('woff2');
+    unicode-range: U+9179, U+917f, U+9187, U+9189, U+918b, U+918d, U+9190, U+9192, U+919a-919b, U+91ba, U+91c7, U+91c9-91ca, U+91cc-91cf, U+91d1, U+91dc, U+9274, U+93d6, U+9488-9489, U+948e, U+9492-9493, U+9497, U+9499, U+949d-94a3, U+94a5-94a9, U+94ae, U+94b1, U+94b3, U+94b5, U+94bb, U+94be, U+94c0-94c3, U+94c5-94c6, U+94dc-94dd, U+94e1, U+94e3, U+94ec-94ed, U+94f0-94f2, U+94f6, U+94f8, U+94fa, U+94fe, U+9500-9501, U+9504-9505, U+9508, U+950b-950c, U+9510-9511, U+9517, U+9519-951a, U+9521, U+9523-9526, U+9528, U+952d-9530, U+9539, U+953b, U+9540-9541, U+9547, U+954a, U+954d, U+9550-9551, U+955c, U+9563, U+956d;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.k.woff2') format('woff2');
+    unicode-range: U+9001-9003, U+9005-9006, U+9009-900a, U+900d, U+900f-9012, U+9014, U+9017, U+901a-901b, U+901d-9022, U+902e, U+9038, U+903b-903c, U+903e, U+9041-9042, U+9044, U+9047, U+904d, U+904f-9053, U+9057, U+905b, U+9062-9063, U+9065, U+9068, U+906d-906e, U+9075, U+907d, U+907f-9080, U+9082-9083, U+908b, U+9091, U+9093, U+9099, U+90a2-90a3, U+90a6, U+90aa, U+90ae-90af, U+90b1, U+90b5, U+90b8-90b9, U+90bb, U+90c1, U+90ca, U+90ce, U+90d1, U+90dd, U+90e1, U+90e7-90e8, U+90ed, U+90f4, U+90f8, U+90fd, U+9102, U+9119, U+9149, U+914b-914d, U+9152, U+9157, U+915a, U+915d-915e, U+9161, U+9163, U+9165, U+916a, U+916c, U+916e, U+9171, U+9175-9178;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.l.woff2') format('woff2');
+    unicode-range: U+8e44, U+8e47-8e48, U+8e4a-8e4b, U+8e51, U+8e59, U+8e66, U+8e6c-8e6d, U+8e6f, U+8e72, U+8e74, U+8e76, U+8e7f, U+8e81, U+8e87, U+8e8f, U+8eab-8eac, U+8eaf, U+8eb2, U+8eba, U+8f66-8f69, U+8f6c, U+8f6e-8f72, U+8f74, U+8f7b, U+8f7d, U+8f7f, U+8f83-8f8a, U+8f8d-8f8e, U+8f90-8f91, U+8f93, U+8f95-8f99, U+8f9b-8f9c, U+8f9e-8f9f, U+8fa3, U+8fa8-8fa9, U+8fab, U+8fb0-8fb1, U+8fb9, U+8fbd-8fbe, U+8fc1-8fc2, U+8fc4-8fc5, U+8fc7-8fc8, U+8fce, U+8fd0-8fd1, U+8fd3-8fd5, U+8fd8-8fd9, U+8fdb-8fdf, U+8fe2, U+8fe6, U+8fe8, U+8fea-8feb, U+8fed, U+8ff0, U+8ff3, U+8ff7-8ff9, U+8ffd, U+9000;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.m.woff2') format('woff2');
+    unicode-range: U+8d24-8d31, U+8d34-8d35, U+8d37-8d3f, U+8d41-8d45, U+8d48, U+8d4a-8d4c, U+8d4e-8d50, U+8d54, U+8d56, U+8d58, U+8d5a-8d5b, U+8d5d-8d5e, U+8d60-8d64, U+8d66-8d67, U+8d6b, U+8d70, U+8d74-8d77, U+8d81, U+8d85, U+8d8a-8d8b, U+8d9f, U+8da3, U+8db3-8db4, U+8db8, U+8dbe-8dbf, U+8dc3-8dc4, U+8dcb-8dcc, U+8dd1, U+8dd7, U+8ddb, U+8ddd, U+8ddf, U+8de4, U+8de8, U+8dea, U+8def, U+8df3, U+8df5, U+8df7, U+8dfa-8dfb, U+8e09-8e0a, U+8e0c, U+8e0f, U+8e1d-8e1e, U+8e22, U+8e29-8e2a, U+8e2e, U+8e31, U+8e35, U+8e39, U+8e42;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.n.woff2') format('woff2');
+    unicode-range: U+8bc9-8bcd, U+8bcf, U+8bd1, U+8bd3, U+8bd5, U+8bd7-8bd8, U+8bda-8bdb, U+8bdd-8bde, U+8be0-8be9, U+8beb-8bf5, U+8bf7-8bf8, U+8bfa-8bfb, U+8bfd-8c01, U+8c03-8c06, U+8c08, U+8c0a-8c0b, U+8c0d-8c13, U+8c15, U+8c17, U+8c19-8c1c, U+8c22-8c24, U+8c26-8c2a, U+8c2c-8c2d, U+8c30-8c35, U+8c37, U+8c41, U+8c46, U+8c4c, U+8c61-8c62, U+8c6a-8c6b, U+8c79-8c7a, U+8c82, U+8c89, U+8c8c, U+8d1d-8d1f, U+8d21-8d23;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.o.woff2') format('woff2');
+    unicode-range: U+889c, U+88a4, U+88ab, U+88ad, U+88b1, U+88c1-88c2, U+88c5-88c6, U+88c9, U+88d4-88d5, U+88d8-88d9, U+88df, U+88e3-88e4, U+88e8, U+88f1, U+88f3-88f4, U+88f8-88f9, U+88fe, U+8902, U+8910, U+8912-8913, U+891a-891b, U+8921, U+8925, U+892a-892b, U+8934, U+8936, U+8941, U+8944, U+895e-895f, U+8966, U+897f, U+8981, U+8986, U+89c1-89c2, U+89c4-89c6, U+89c8-89cb, U+89ce, U+89d0-89d2, U+89e3, U+89e5-89e6, U+8a00, U+8a07, U+8a79, U+8a89-8a8a, U+8a93, U+8b66, U+8b6c, U+8ba1-8bab, U+8bad-8bb0, U+8bb2-8bb3, U+8bb6-8bba, U+8bbc-8bc1, U+8bc4-8bc6, U+8bc8;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.p.woff2') format('woff2');
+    unicode-range: U+8695, U+869c, U+86a3-86a4, U+86a7, U+86aa, U+86af, U+86b1, U+86c0, U+86c6-86c7, U+86ca-86cb, U+86d0, U+86d4, U+86d9, U+86db, U+86df, U+86e4, U+86ee, U+86f0, U+86f9, U+86fe, U+8700, U+8702-8703, U+8708-8709, U+870d, U+8712-8713, U+8715, U+8717-8718, U+871a, U+871c, U+8721, U+8725, U+8734, U+8737, U+873b, U+873f, U+8747, U+8749, U+874c, U+874e, U+8757, U+8759, U+8760, U+8763, U+8774, U+8776, U+877c, U+8782-8783, U+8785, U+878d, U+8793, U+879f, U+87af, U+87b3, U+87ba, U+87c6, U+87ca, U+87d1-87d2, U+87e0, U+87e5, U+87f9, U+87fe, U+8815, U+8822, U+8839, U+8840, U+8845, U+884c-884d, U+8854, U+8857, U+8859, U+8861, U+8863, U+8865, U+8868, U+886b-886c, U+8870, U+8877, U+887d-887f, U+8881-8882, U+8884-8885, U+8888, U+888b, U+888d, U+8892, U+8896;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.q.woff2') format('woff2');
+    unicode-range: U+83dc-83dd, U+83e0, U+83e9, U+83f1-83f2, U+8403-8404, U+840b-840e, U+841d, U+8424-8428, U+843d, U+8451, U+8457, U+8459, U+845b, U+8461, U+8463, U+8469, U+846b-846c, U+8471, U+8475, U+847a, U+8482, U+848b, U+8499, U+849c, U+84b2, U+84b8, U+84bf, U+84c4, U+84c9, U+84d1, U+84d6, U+84dd, U+84df, U+84e6, U+84ec, U+8511, U+8513, U+8517, U+851a, U+851f, U+8521, U+852b-852c, U+8537, U+853b-853d, U+8549-854a, U+8559, U+8574, U+857e, U+8584, U+8587, U+858f, U+859b, U+85aa, U+85af-85b0, U+85c9, U+85cf-85d0, U+85d3, U+85d5, U+85e4, U+85e9, U+85fb, U+8611, U+8638, U+864e-8651, U+8654, U+865a, U+865e, U+866b-866c, U+8671, U+8679, U+867d-867e, U+8680-8682, U+868a, U+868c-868d, U+8693;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.s.woff2') format('woff2');
+    unicode-range: U+80de-8272;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.t.woff2') format('woff2');
+    unicode-range: U+7f72-80dc;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.u.woff2') format('woff2');
+    unicode-range: U+7eb5-7f6e;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.v.woff2') format('woff2');
+    unicode-range: U+7b4c-7eb3;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.w.woff2') format('woff2');
+    unicode-range: U+7981-7b4b;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.x.woff2') format('woff2');
+    unicode-range: U+77aa-7980;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.y.woff2') format('woff2');
+    unicode-range: U+761f-77a9;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.z.woff2') format('woff2');
+    unicode-range: U+7435-7601;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.aa.woff2') format('woff2');
+    unicode-range: U+725f-7434;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ab.woff2') format('woff2');
+    unicode-range: U+706d-725b;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ac.woff2') format('woff2');
+    unicode-range: U+6df7-706b;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ad.woff2') format('woff2');
+    unicode-range: U+6ccc-6df3;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ae.woff2') format('woff2');
+    unicode-range: U+6b92-6cca;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.af.woff2') format('woff2');
+    unicode-range: U+68ad-6b8b;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ag.woff2') format('woff2');
+    unicode-range: U+6756-68a8;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ah.woff2') format('woff2');
+    unicode-range: U+65f7-6751;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ai.woff2') format('woff2');
+    unicode-range: U+6467-65f6;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.aj.woff2') format('woff2');
+    unicode-range: U+6323-645e;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ak.woff2') format('woff2');
+    unicode-range: U+6258-6321;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.al.woff2') format('woff2');
+    unicode-range: U+60cb-6254;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.am.woff2') format('woff2');
+    unicode-range: U+5fcc-60ca;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.an.woff2') format('woff2');
+    unicode-range: U+5e7f-5fc6;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ao.woff2') format('woff2');
+    unicode-range: U+5c7f-5e7d;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ap.woff2') format('woff2');
+    unicode-range: U+5b85-5c79;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.aq.woff2') format('woff2');
+    unicode-range: U+5996-5b83;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ar.woff2') format('woff2');
+    unicode-range: U+57ce-5993;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.as.woff2') format('woff2');
+    unicode-range: U+561b-57cb;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.at.woff2') format('woff2');
+    unicode-range: U+54e5-5618;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.au.woff2') format('woff2');
+    unicode-range: U+5411-54df;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.av.woff2') format('woff2');
+    unicode-range: U+5348-5410;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.aw.woff2') format('woff2');
+    unicode-range: U+5207-5347;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ax.woff2') format('woff2');
+    unicode-range: U+50cf-5206;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.ay.woff2') format('woff2');
+    unicode-range: U+4f60-50bb;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.az.woff2') format('woff2');
+    unicode-range: U+4e94-4f5e;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.a0.woff2') format('woff2');
+    unicode-range: U+d7, U+e0-e1, U+e8-ea, U+ec-ed, U+f2-f3, U+f7, U+f9-fa, U+fc, U+2014, U+2018-2019, U+201c-201d, U+3001-3002, U+300a-300b, U+3010-3011, U+4e00-4e93;
+}
+
+@font-face {
+    font-family: 'HarmonyOS_Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('@{font-prefix}.a1.woff2') format('woff2');
+    unicode-range: U+21-7e, U+a4, U+a7-a8, U+b0-b1, U+b7;
 }
