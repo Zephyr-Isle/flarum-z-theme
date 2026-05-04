@@ -31,9 +31,9 @@
 @menu-item-hover: if(@config-dark-mode = true, ~"#ffffff0f", ~"#00000009");
 @menu-item-active: if(@config-dark-mode = true, ~"#ffffff0a", ~"#00000006");
 
-// Font Awesome icon mixin
-.icon(@content, @size: 14px, @weight: 600) {
-    font-family: 'Font Awesome 5 Free';
+// Font Awesome icon mixin (Flarum v2 compatible)
+.icon(@content, @size: 14px, @weight: 900) {
+    font-family: 'Font Awesome 6 Free';
     font-weight: @weight;
     font-size: @size;
     content: @content;
@@ -269,17 +269,17 @@ mark {
 .item-like {
     .Button--link {
         .Button-label { display: none; }
-        &:before { .icon('\f164', 14px); vertical-align: -1px; }
+        &:before { .icon('\f164', 14px, 400); vertical-align: -1px; }
     }
     .Button:focus { color: #ff5c5c; }
 }
 
 .item-reply .Button--link {
     .Button-label { display: none; }
-    &:before { .icon('\f3e5', 15px); margin-right: 8px; vertical-align: -2px; }
+    &:before { .icon('\f3e5', 15px, 400); margin-right: 8px; vertical-align: -2px; }
 }
 
-.fa-reply { .icon('\f3e5', 15px); margin-right: 8px; }
+.fa-reply { .icon('\f3e5', 15px, 400); margin-right: 8px; }
 .item-polls { transform: translate(0, -2px); }
 
 // ============================================
@@ -347,8 +347,6 @@ body.dark {
 
 @media screen and (max-width: 1200px) {
     .item-onlineUsers, .item-forumStatisticsWidget, .item-lastDiscussionViewers { display: none !important; }
-    .ButtonGroup > .Button:last-child:not(:first-child),
-    .ButtonGroup > .Button.Dropdown-toggle:not(:first-child) { display: none !important; }
 }
 
 @media (max-width: 767px) {
