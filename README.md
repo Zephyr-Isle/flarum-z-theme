@@ -8,6 +8,7 @@ A beautiful and responsive theme for [Flarum](https://flarum.org/) forum softwar
 
 - 🎨 Modern and clean design
 - 📱 Fully responsive layout
+- 🌗 Improved light and dark mode support
 - ⚡ Lightweight and fast
 - 🛠️ Easy to customize
 
@@ -23,7 +24,7 @@ Then enable the theme in your Flarum admin panel.
 
 ## Requirements
 
-- Flarum Core ^1.0
+- Flarum Core ^2.0
 
 ## Credits
 

@@ -38,7 +38,7 @@
     backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
 
-    body.dark & {
+    [data-theme^=dark] & {
         background: @dark-bg;
         border: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -61,16 +61,52 @@
 // ============================================
 :root {
     --noise-asset: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    --z-bg: #f5f7fb;
+    --z-surface: rgba(255, 255, 255, 0.78);
+    --z-surface-strong: rgba(255, 255, 255, 0.92);
+    --z-surface-muted: rgba(255, 255, 255, 0.58);
+    --z-surface-elevated: rgba(255, 255, 255, 0.86);
+    --z-surface-inset: rgba(248, 250, 252, 0.92);
+    --z-border: rgba(15, 23, 42, 0.08);
+    --z-border-strong: rgba(15, 23, 42, 0.12);
+    --z-hover: rgba(15, 23, 42, 0.05);
+    --z-active: rgba(15, 23, 42, 0.08);
+    --z-text: #172033;
+    --z-text-muted: #5c667a;
+    --z-highlight-bg: #fff1a8;
+    --z-highlight-text: #3d2f00;
+    --z-danger: #e25555;
+    --z-success: #4e9b4a;
+    --z-info: #4c8df0;
+    color-scheme: light;
+}
+
+[data-theme^=dark] {
+    --z-bg: #0f1724;
+    --z-surface: rgba(17, 24, 39, 0.78);
+    --z-surface-strong: rgba(15, 23, 36, 0.92);
+    --z-surface-muted: rgba(255, 255, 255, 0.04);
+    --z-surface-elevated: rgba(20, 28, 44, 0.88);
+    --z-surface-inset: rgba(255, 255, 255, 0.06);
+    --z-border: rgba(255, 255, 255, 0.08);
+    --z-border-strong: rgba(255, 255, 255, 0.12);
+    --z-hover: rgba(255, 255, 255, 0.06);
+    --z-active: rgba(255, 255, 255, 0.1);
+    --z-text: #e5edf8;
+    --z-text-muted: #a1aec3;
+    --z-highlight-bg: #2457c5;
+    --z-highlight-text: #f5f9ff;
+    --z-danger: #ff7b7b;
+    --z-success: #74c56c;
+    --z-info: #74b0ff;
+    color-scheme: dark;
 }
 
 body {
     font-family: HarmonyOS_Regular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     background-attachment: fixed;
-    background-color: #f4f5f7;
-
-    &.dark {
-        background-color: #0d1117;
-    }
+    background-color: var(--z-bg);
+    color: var(--z-text);
 }
 
 // ============================================
@@ -78,35 +114,23 @@ body {
 // ============================================
 @media (min-width: 768px) {
     #header {
-        .acrylic-bg(rgba(246, 247, 249, 0.78), rgba(13, 17, 23, 0.82));
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        .acrylic-bg(var(--z-surface), var(--z-surface));
+        border-bottom: 1px solid var(--z-border);
         .shadow(4);
-
-        body.dark & {
-            border-bottom-color: rgba(255, 255, 255, 0.05);
-        }
     }
 
     .item-nav>div>ul>li {
         margin: 4px 0;
-        padding: 0.25px 12px;
+        padding: 4px 12px;
         border-radius: @border-radius-pill;
         transition: all 0.2s ease;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-
-            body.dark & {
-                background-color: rgba(255, 255, 255, 0.06);
-            }
+            background-color: var(--z-hover);
         }
 
         &.active {
-            background-color: rgba(0, 0, 0, 0.07);
-
-            body.dark & {
-                background-color: rgba(255, 255, 255, 0.1);
-            }
+            background-color: var(--z-active);
         }
 
         >a {
@@ -118,10 +142,6 @@ body {
 .Header-logo {
     max-height: 24px;
     transition: transform 0.2s;
-
-    &:hover {
-        transform: scale(1.05);
-    }
 }
 
 // ============================================
@@ -141,12 +161,9 @@ body {
 .FormControl {
     transition: border-color 0.3s, box-shadow 0.3s;
     border-radius: @border-radius-sm;
-    background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-
-    body.dark & {
-        border-color: rgba(255, 255, 255, 0.1);
-    }
+    background-color: var(--z-surface-inset);
+    border: 1px solid var(--z-border);
+    color: var(--z-text);
 
     &:focus {
         border-color: var(--primary-color);
@@ -155,13 +172,9 @@ body {
 }
 
 .Search-input>input {
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background: rgba(255, 255, 255, 0.5);
-
-    body.dark & {
-        border-color: rgba(255, 255, 255, 0.08);
-        background: rgba(255, 255, 255, 0.05);
-    }
+    border: 1px solid var(--z-border);
+    background: var(--z-surface-muted);
+    color: var(--z-text);
 
     @media (min-width: 768px) {
         border-radius: @border-radius-pill !important;
@@ -179,7 +192,7 @@ body {
 // Components - Dropdowns (Acrylic Style)
 // ============================================
 .Dropdown-menu {
-    .acrylic-bg(rgba(255, 255, 255, 0.85), rgba(28, 28, 30, 0.85));
+    .acrylic-bg(var(--z-surface-elevated), var(--z-surface-elevated));
     .shadow(16);
     border-radius: @border-radius;
     background-image: var(--noise-asset);
@@ -198,31 +211,20 @@ body {
             border-radius: @border-radius-sm;
             transition: background-color 0.15s;
             padding: 8px 12px;
+            color: var(--z-text);
 
             &:hover {
-                background: rgba(0, 0, 0, 0.04);
-
-                body.dark & {
-                    background: rgba(255, 255, 255, 0.06);
-                }
+                background: var(--z-hover);
             }
 
             &:active {
-                background: rgba(0, 0, 0, 0.08);
-
-                body.dark & {
-                    background: rgba(255, 255, 255, 0.1);
-                }
+                background: var(--z-active);
             }
         }
 
         &.active>a,
         &.active>button {
-            background: rgba(0, 0, 0, 0.06);
-
-            body.dark & {
-                background: rgba(255, 255, 255, 0.08);
-            }
+            background: var(--z-active);
         }
     }
 }
@@ -231,27 +233,18 @@ body {
 // Components - Discussions & Cards
 // ============================================
 .DiscussionListItem {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    background: var(--z-surface-muted);
+    border: 1px solid var(--z-border);
     border-radius: @border-radius;
     margin-bottom: 8px !important;
     padding: 12px 16px;
     transition: all 0.2s ease;
     .shadow(2);
 
-    body.dark & {
-        background: rgba(255, 255, 255, 0.03);
-        border-color: rgba(255, 255, 255, 0.04);
-    }
-
     &:hover {
         .shadow(4);
         transform: translateY(-1px);
-        border-color: rgba(0, 0, 0, 0.08);
-
-        body.dark & {
-            border-color: rgba(255, 255, 255, 0.08);
-        }
+        border-color: var(--z-border-strong);
     }
 
     a {
@@ -290,13 +283,8 @@ body {
     border: 0;
     border-left: 4px solid var(--primary-color, #466eb2);
     border-radius: 0 @border-radius-sm @border-radius-sm 0;
-    background: rgba(0, 0, 0, 0.03);
-    color: #555;
-
-    body.dark & {
-        background: rgba(255, 255, 255, 0.05);
-        color: #aaa;
-    }
+    background: var(--z-surface-inset);
+    color: var(--z-text-muted);
 }
 
 mark {
@@ -304,13 +292,8 @@ mark {
     border-radius: 4px;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
     margin: 0 2px;
-    background: #FFE300 !important;
-    color: black !important;
-
-    body.dark & {
-        background: #0072ff !important;
-        color: white !important;
-    }
+    background: var(--z-highlight-bg) !important;
+    color: var(--z-highlight-text) !important;
 }
 
 .aaalert {
@@ -328,15 +311,15 @@ mark {
     }
 
     &.aaerror .aainner {
-        border-left: 4px solid #ff5c5c !important;
+        border-left: 4px solid var(--z-danger) !important;
     }
 
     &.aasuccess .aainner {
-        border-left: 4px solid #58a400 !important;
+        border-left: 4px solid var(--z-success) !important;
     }
 
     &.aainfo .aainner {
-        border-left: 4px solid #569ff7 !important;
+        border-left: 4px solid var(--z-info) !important;
     }
 }
 
@@ -360,7 +343,7 @@ mark {
 
     &:focus,
     &.active {
-        color: #ff5c5c !important;
+        color: var(--z-danger) !important;
     }
 }
 
@@ -405,8 +388,8 @@ mark {
         border-radius: @border-radius-lg;
         margin-bottom: 20px;
         .shadow(28);
-        .acrylic-bg(rgba(255, 255, 255, 0.92), rgba(28, 28, 30, 0.92));
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        .acrylic-bg(var(--z-surface-strong), var(--z-surface-strong));
+        border: 1px solid var(--z-border);
     }
 }
 
@@ -414,13 +397,9 @@ mark {
 // Utility & Responsive
 // ============================================
 .LoadingIndicator {
-    border-color: rgba(0, 0, 0, 0.1);
+    border-color: var(--z-border-strong);
     border-width: 3px;
     border-top-color: var(--primary-color);
-
-    body.dark & {
-        border-color: rgba(255, 255, 255, 0.1);
-    }
 }
 
 .DiscussionList-loadMore button,
@@ -446,7 +425,7 @@ i[data-name=":flag_hk:"] {
 }
 
 .item-markAllAsRead,
-item-signUp {
+.item-signUp {
     display: none !important;
 }
 
