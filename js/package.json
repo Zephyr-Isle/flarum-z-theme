@@ -1,0 +1,13 @@
+{
+  "name": "@zephyrisle/flarum-z-theme",
+  "private": true,
+  "devDependencies": {
+    "flarum-webpack-config": "^3.0.3",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+  }
+}
