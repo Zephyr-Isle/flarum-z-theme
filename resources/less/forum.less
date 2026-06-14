@@ -404,9 +404,15 @@ body {
     border-radius: @border-radius;
     background-image: var(--noise-asset);
     overflow: hidden;
+    z-index: 9999;
 
     &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu) {
         padding: 6px;
+    }
+
+    &:not(.sideNav .Dropdown--select .Dropdown-menu, .PostStreamScrubber .Dropdown-menu, .Search-results) {
+        background: var(--z-bg);
+        background-image: none;
     }
 
     >li {
